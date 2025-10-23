@@ -10,6 +10,8 @@ import { registerSoundfonts } from '@strudel/soundfonts';
 import { stranger_tune } from './tunes';
 import console_monkey_patch, { getD3Data } from './console-monkey-patch';
 
+//Test comments
+
 let globalEditor = null;
 
 const handleD3Data = (event) => {
