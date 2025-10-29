@@ -1,17 +1,33 @@
 function DJButtons(configureDJCheck) {
     return (
       <>
-    <div className="form-check">
-        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" defaultChecked />
-        <label className="form-check-label" htmlFor="flexRadioDefault1">
-            p1: ON
-        </label>
-    </div>
-    <div className="form-check">
-        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"/>
-        <label className="form-check-label" htmlFor="flexRadioDefault2">
-            p1: HUSH
-        </label>
+            <div className="input-group mb-3">
+                <button className="btn btn-outline-primary" type="button">+</button>
+                <button className="btn btn-outline-danger" type="button">-</button>
+                <input type="text" className="form-control" placeholder="CPM" aria-label="CPM control"/>
+            </div>
+
+            <label for="volume" className="form-label fs-5 fw-bold text-dark">Volume</label>
+            <input type="range" className="form-range" id="volume" />
+
+            <div>
+            </div>
+
+            <div className="form-check form-switch">
+                <input className="form-check-input" type="checkbox" id="switch1" />
+                <label className="form-check-label" for="switch1">Default switch checkbox input</label>
+            </div>
+            <div className="form-check form-switch">
+                <input className="form-check-input" type="checkbox" id="switch2" />
+                <label className="form-check-label" for="switch2">Checked switch checkbox input</label>
+            </div>
+            <div className="form-check form-switch">
+                <input className="form-check-input" type="checkbox" id="switch3" />
+                <label className="form-check-label" for="switch3">Disabled switch checkbox input</label>
+            </div>
+            <div className="form-check form-switch">
+                <input className="form-check-input" type="checkbox" id="switch4" />
+                <label className="form-check-label" for="switch4">Disabled checked switch checkbox input</label>
             </div>
     </>
   );

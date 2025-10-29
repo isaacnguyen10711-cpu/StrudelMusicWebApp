@@ -24,7 +24,7 @@ const handleD3Data = (event) => {
 };
 
 export function ProcAndPlay() {
-    if (globalEditor != null && globalEditor.repl.state.started == true) {
+    if (globalEditor != null && globalEditor.repl.state.started === true) {
         console.log(globalEditor)
         Proc()
         globalEditor.evaluate();
@@ -41,12 +41,12 @@ export function Proc() {
 
 export function ProcessText(match, ...args) {
 
-    let replace = ""
-    if (document.getElementById('flexRadioDefault2').checked) {
-        replace = "_"
-    }
+    //let replace = ""
+    //if (document.getElementById('flexRadioDefault2').checked) {
+    //    replace = "_"
+    //}
 
-    return replace
+    //return replace
 }
 
 export default function StrudelDemo() {
@@ -150,24 +150,28 @@ return (
                             <PreprocessButtons
                                 preprocessClick={handlePreprocess}
                                 preprocessAndPlayClick={handleProcesAndPlay}
+                                isPreprocessing={isPreprocessing}
                             />
+                            <br />
                             <br />
                             <PlayButtons
                                 playClick={handlePlay}
                                 stopClick={handleStop}
+                                isPlaying={isPlaying}
+                            />
+                            <br />
+                            <br />
+                            <DJButtons
+                                configureDJCheck={handleDJButtons}
                             />
                         </nav>
                     </div>
                 </div>
+
                 <div className="row">
                     <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
                         <div id="editor" />
                         <div id="output" />
-                    </div>
-                    <div className="col-md-4">
-                        <DJButtons
-                            configureDJCheck={handleDJButtons}
-                        />
                     </div>
                 </div>
             </div>
