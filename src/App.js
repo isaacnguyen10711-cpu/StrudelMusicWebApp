@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { StrudelMirror } from '@strudel/codemirror';
 import { evalScope } from '@strudel/core';
 import { drawPianoroll } from '@strudel/draw';
@@ -11,7 +11,7 @@ import { stranger_tune } from './tunes';
 import console_monkey_patch, { getD3Data } from './console-monkey-patch';
 import DJButtons from './components/DJButtons';
 import PlayButtons from './components/PlayButtons';
-import ProcessButtons from './components/ProcessButtons';
+import PreprocessButtons from './components/PreprocessButtons';
 import TextToProcess from './components/TextToProcess';
 
 
@@ -22,25 +22,6 @@ let globalEditor = null;
 const handleD3Data = (event) => {
     console.log(event.detail);
 };
-
-export function SetupButtons() {
-
-    document.getElementById('play').addEventListener('click', () => globalEditor.evaluate());
-    document.getElementById('stop').addEventListener('click', () => globalEditor.stop());
-    document.getElementById('process').addEventListener('click', () => {
-        Proc()
-    }
-    )
-    document.getElementById('process_play').addEventListener('click', () => {
-        if (globalEditor != null) {
-            Proc()
-            globalEditor.evaluate()
-        }
-    }
-    )
-}
-
-
 
 export function ProcAndPlay() {
     if (globalEditor != null && globalEditor.repl.state.started == true) {
@@ -69,6 +50,45 @@ export function ProcessText(match, ...args) {
 }
 
 export default function StrudelDemo() {
+
+    // Setting up states to react to changes when users click on buttons
+    const [isConfiguringDJ, setIsConfiguringDJ] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [isPreprocessing, setIsPreprocessing] = useState(false);
+
+    const handleDJButtons = () => {
+        ProcessText()
+        setIsConfiguringDJ(true)
+    }
+
+    // React-styled function to handle play button
+    const handlePlay = () => {
+        if (globalEditor) {
+            globalEditor.evaluate();
+            setIsPlaying(true);
+        }
+    }
+    // React-styled function to handle stop button
+    const handleStop = () => {
+        if (globalEditor) {
+            globalEditor.stop();
+            setIsPlaying(false);
+        }
+    }
+    // React-styled function to handle preprocess button
+    const handlePreprocess = () => {
+        Proc();
+        setIsPreprocessing(true);
+    }
+
+    const handleProcesAndPlay = () => {
+        if (globalEditor) {
+            Proc();
+            globalEditor.evaluate();
+            setIsPreprocessing(true);
+            setIsPlaying(true);
+        }
+    }
 
 const hasRun = useRef(false);
 
@@ -106,7 +126,6 @@ useEffect(() => {
             });
             
         document.getElementById('proc').value = stranger_tune
-        SetupButtons()
         Proc()
     }
 
@@ -122,14 +141,21 @@ return (
                 <div className="row">
                     <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
                         <TextToProcess
+
                         />
                     </div>
                     <div className="col-md-4">
 
                         <nav>
-                            <ProcessButtons/>
+                            <PreprocessButtons
+                                preprocessClick={handlePreprocess}
+                                preprocessAndPlayClick={handleProcesAndPlay}
+                            />
                             <br />
-                            <PlayButtons/>
+                            <PlayButtons
+                                playClick={handlePlay}
+                                stopClick={handleStop}
+                            />
                         </nav>
                     </div>
                 </div>
@@ -140,6 +166,7 @@ return (
                     </div>
                     <div className="col-md-4">
                         <DJButtons
+                            configureDJCheck={handleDJButtons}
                         />
                     </div>
                 </div>

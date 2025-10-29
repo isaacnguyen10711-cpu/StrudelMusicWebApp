@@ -1,4 +1,4 @@
-function DJButtons() {
+function DJButtons(configureDJCheck) {
     return (
       <>
     <div className="form-check">
