@@ -1,10 +1,13 @@
-function DJButtons(configureDJCheck) {
+const DJButtons = ({ changeCpm }) => {
+    const cpm = document.getElementById("cpmUserInput").value;
+
     return (
       <>
             <div className="input-group mb-3">
                 <button className="btn btn-outline-primary" type="button">+</button>
                 <button className="btn btn-outline-danger" type="button">-</button>
-                <input type="text" className="form-control" placeholder="CPM" aria-label="CPM control"/>
+                <input id="cpmUserInput" type="text" className="form-control" placeholder="CPM" aria-label="CPM control" />
+                <button onClick={() => {changeCpm(Number(cpm)) }} className="btn btn-outline-secondary" type="button" id="button-addon2">Set</button>
             </div>
 
             <label for="volume" className="form-label fs-5 fw-bold text-dark">Volume</label>

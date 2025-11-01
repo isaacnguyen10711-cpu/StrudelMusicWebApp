@@ -1,4 +1,4 @@
-function PlayButtons({ playClick, stopClick, isPlaying }) {
+const PlayButtons = ({ playClick, stopClick, isPlaying }) => {
     let playStatus;
     if (isPlaying) {
         playStatus = "The song is being played"

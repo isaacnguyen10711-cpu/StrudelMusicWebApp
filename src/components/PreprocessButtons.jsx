@@ -1,4 +1,4 @@
-function ProcessButtons({ preprocessClick, preprocessAndPlayClick }) {
+const ProcessButtons = ({ preprocessClick, preprocessAndPlayClick }) => {
 
     return (
         <>

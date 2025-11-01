@@ -1,4 +1,4 @@
-function ReactComponent() {
+const TextToProcess = () => {
     return (
       <>
     <label htmlFor="exampleFormControlTextarea1" className="form-label">Text to preprocess:</label>
@@ -7,4 +7,4 @@ function ReactComponent() {
   );
 }
 
-export default ReactComponent;
+export default TextToProcess;

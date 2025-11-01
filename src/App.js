@@ -13,6 +13,7 @@ import DJButtons from './components/DJButtons';
 import PlayButtons from './components/PlayButtons';
 import PreprocessButtons from './components/PreprocessButtons';
 import TextToProcess from './components/TextToProcess';
+import Editor from './components/Editor';
 
 
 //Test comments
@@ -24,12 +25,12 @@ const handleD3Data = (event) => {
 };
 
 export function ProcAndPlay() {
-    if (globalEditor != null && globalEditor.repl.state.started === true) {
+/*    if (globalEditor != null && globalEditor.repl.state.started === true) {*/
         console.log(globalEditor)
         Proc()
         globalEditor.evaluate();
     }
-}
+//}
 
 export function Proc() {
 
@@ -38,6 +39,7 @@ export function Proc() {
     ProcessText(proc_text);
     globalEditor.setCode(proc_text_replaced)
 }
+
 
 export function ProcessText(match, ...args) {
 
@@ -49,12 +51,34 @@ export function ProcessText(match, ...args) {
     //return replace
 }
 
+export function SetNewCpm(newCpm) {
+    let proc_text = document.getElementById('proc').value;
+    // Find if there is a phrase called setcpm() in the textarea
+    let findCpm = proc_text.includes("setcpm(");
+    if (findCpm) {
+        var start = proc_text.indexOf("setcpm(") + 8;
+        var end = proc_text.indexOf(")", start);
+        var currentCpm = proc_text.substring(start, end).trim();
+        proc_text = proc_text.replaceAll(`setcpm(${currentCpm})`, `setcpm(${newCpm})`)
+    }
+    else {
+        proc_text = `setcpm(${newCpm})\n` + proc_text;
+        console.log("No setcpm command found")
+
+    }
+    document.getElementById('proc').value = proc_text;
+    globalEditor.setCode(proc_text);
+}
+
 export default function StrudelDemo() {
 
     // Setting up states to react to changes when users click on buttons
     const [isConfiguringDJ, setIsConfiguringDJ] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
     const [isPreprocessing, setIsPreprocessing] = useState(false);
+
+    //Set cpm function using state
+    const [cpm, setCpm] = useState(0);
 
     const handleDJButtons = () => {
         ProcessText()
@@ -81,13 +105,18 @@ export default function StrudelDemo() {
         setIsPreprocessing(true);
     }
 
+    // React-styled function to handle preprocess and play button
     const handleProcesAndPlay = () => {
         if (globalEditor) {
-            Proc();
-            globalEditor.evaluate();
+            ProcAndPlay();
             setIsPreprocessing(true);
             setIsPlaying(true);
         }
+    }
+
+    const handleCpmChange = (newCpm) => {
+        SetNewCpm(newCpm);
+        setCpm(newCpm);
     }
 
 const hasRun = useRef(false);
@@ -162,17 +191,15 @@ return (
                             <br />
                             <br />
                             <DJButtons
-                                configureDJCheck={handleDJButtons}
+                                changeCpm={handleCpmChange}
                             />
                         </nav>
                     </div>
                 </div>
 
                 <div className="row">
-                    <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                        <div id="editor" />
-                        <div id="output" />
-                    </div>
+                    <Editor
+                    />
                 </div>
             </div>
             <canvas id="roll"></canvas>
