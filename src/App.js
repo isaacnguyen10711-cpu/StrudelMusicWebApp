@@ -14,6 +14,7 @@ import PlayButtons from './components/PlayButtons';
 import PreprocessButtons from './components/PreprocessButtons';
 import TextToProcess from './components/TextToProcess';
 import TextEditor from './components/TextEditor';
+import CpmAndEffects from './components/CpmAndEffects';
 
 
 //Test comments
@@ -24,19 +25,19 @@ const handleD3Data = (event) => {
     console.log(event.detail);
 };
 
-export function ProcAndPlay() {
+export function ProcAndPlay(procText, setProcText) {
 /*    if (globalEditor != null && globalEditor.repl.state.started === true) {*/
         console.log(globalEditor)
-        Proc()
+        Proc(procText, setProcText)
         globalEditor.evaluate();
     }
 //}
 
-export function Proc() {
-    let proc_text = document.getElementById('proc').value
-    let proc_text_replaced = proc_text.replaceAll('<p1_Radio>', ProcessText);
-    ProcessText(proc_text);
-    globalEditor.setCode(proc_text_replaced)
+export function Proc(procText, setProcText) {
+    let procTextreplaced = procText.replaceAll('<p1_Radio>', ProcessText);
+    ProcessText(procText);
+    setProcText(procTextreplaced)
+    globalEditor.setCode(procTextreplaced)
 }
 
 
@@ -50,28 +51,44 @@ export function ProcessText(match, ...args) {
     //return replace
 }
 
-export function SetNewCpm(newCpm) {
-    let proc_text = document.getElementById('proc').value;
+export function SetNewCpm(procText, setProcText, newCpm) {
     // Find if there is a phrase called setcpm() in the textarea
-    let findCpm = proc_text.includes("setcpm(");
+    let findCpm = procText.includes("setcpm(");
     console.log("Found CPM: " + findCpm)
     // A regular expression to find and match the setcpm command in the strudel text editor
     const regex = /setcpm\(.*\)/g;
     if (findCpm) {
-        proc_text = proc_text.replaceAll(regex, `setcpm(${newCpm})`)
+        var updatedText = procText.replaceAll(regex, `setcpm(${newCpm})`)
     }
     else {
-        proc_text = `setcpm(${newCpm})\n` + proc_text;
+        procText = `setcpm(${newCpm})\n` + procText;
         console.log("No setcpm command found")
 
     }
-    document.getElementById('proc').value = proc_text;
-    globalEditor.setCode(proc_text);
+    setProcText(updatedText);
+    globalEditor.setCode(updatedText);
 }
 
-export function 
+export function InstrumentList(procText) {
+    // Created a regex to match which ever instrument that starts with instrumental can be used with the radio buttons
+    const regex = /^instrumental_(.*):/gm;
+
+    // Find the instruments and convert it to an array
+    const instrumentListRaw = Array.from(procText.matchAll(regex));
+    console.log("Instrumental List Raw: " + instrumentListRaw);
+    // Convert the raw array to a new array with only the instruments name
+    const instrumentalList = instrumentListRaw.map(i => i[1]);
+    console.log("Instrumental List: " + instrumentalList)
+    return instrumentalList;
+}
+
+export function PlayInstrument(instrumentId) {
+    let 
+}
 
 export default function StrudelDemo() {
+
+    const [procText, setProcText] = useState(stranger_tune);
 
     // Setting up states to react to changes when users click on buttons
     const [isPlaying, setIsPlaying] = useState(false);
@@ -83,6 +100,10 @@ export default function StrudelDemo() {
     // Set hide or open text area using states
     const [textAreaIsOpen, setTextAreaIsOpen] = useState(false);
     const [textEditorIsOpen, setTextEditorIsOpen] = useState(false);
+
+    const [instrumentList, setInstrumentList] = useState([]);
+    const
+
 
     // React-styled function to handle play button
     const handlePlay = () => {
@@ -100,14 +121,14 @@ export default function StrudelDemo() {
     }
     // React-styled function to handle preprocess button
     const handlePreprocess = () => {
-        Proc();
+        Proc(procText, setProcText);
         setIsPreprocessing(true);
     }
 
     // React-styled function to handle preprocess and play button
     const handleProcesAndPlay = () => {
         if (globalEditor) {
-            ProcAndPlay();
+            ProcAndPlay(procText, setProcText);
             setIsPreprocessing(true);
             setIsPlaying(true);
         }
@@ -115,7 +136,7 @@ export default function StrudelDemo() {
 
     const handleCpmChange = (newCpm) => {
         if (!isNaN(newCpm) || newCpm.includes("/")) {
-            SetNewCpm(newCpm)
+            SetNewCpm(procText, setProcText, newCpm)
             setCpm(newCpm);
         }
         else {
@@ -144,6 +165,7 @@ export default function StrudelDemo() {
             setTextEditorIsOpen(true);
         }
     }
+
 
 const hasRun = useRef(false);
 
@@ -179,9 +201,9 @@ useEffect(() => {
                     await Promise.all([loadModules, registerSynthSounds(), registerSoundfonts()]);
                 },
             });
-            
-        document.getElementById('proc').value = stranger_tune
-        Proc()
+
+        Proc(procText, setProcText)
+        setInstrumentList(InstrumentList(procText))
     }
 
 }, []);
@@ -207,17 +229,24 @@ return (
                             isPreprocessing={isPreprocessing}
                         />
                 </div>
-                    <div className="row">
+                <div className="row">
+                    <div className="col-4">
+                        <CpmAndEffects
+                            changeCpm={handleCpmChange}
+                            displayCpm={cpm}
+                        />
+                    </div>
                         <div className="col-4">
-                            <DJButtons
-                                changeCpm={handleCpmChange}
-                                displayCpm={cpm}
+                        <DJButtons
+                            instrumentalList={instrumentList}
+                            
                             />
                         </div>
                     </div>
 
                 <div className="row mb-4">
-                        <TextToProcess
+                    <TextToProcess
+                        text={procText}
                             isOpen={textAreaIsOpen}
                             toggle={handleTextAreaToggle}
                     />
