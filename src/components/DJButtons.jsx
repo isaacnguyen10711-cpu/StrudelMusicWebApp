@@ -1,13 +1,16 @@
-const DJButtons = ({ changeCpm }) => {
-    const cpm = document.getElementById("cpmUserInput").value;
+const DJButtons = ({ changeCpm, displayCpm }) => {
 
     return (
-      <>
+        <>
+            <p className="fs-5 fw-bold text-secondary">Current CPM: {displayCpm}</p>
             <div className="input-group mb-3">
                 <button className="btn btn-outline-primary" type="button">+</button>
                 <button className="btn btn-outline-danger" type="button">-</button>
                 <input id="cpmUserInput" type="text" className="form-control" placeholder="CPM" aria-label="CPM control" />
-                <button onClick={() => {changeCpm(Number(cpm)) }} className="btn btn-outline-secondary" type="button" id="button-addon2">Set</button>
+                <button onClick={() => {
+                    const cpm = document.getElementById("cpmUserInput").value;
+                    changeCpm(cpm);
+                }} className="btn btn-outline-secondary" type="button" id="button-addon2">Set</button>
             </div>
 
             <label for="volume" className="form-label fs-5 fw-bold text-dark">Volume</label>

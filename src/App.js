@@ -55,11 +55,12 @@ export function SetNewCpm(newCpm) {
     let proc_text = document.getElementById('proc').value;
     // Find if there is a phrase called setcpm() in the textarea
     let findCpm = proc_text.includes("setcpm(");
+    console.log("Found CPM: " + findCpm)
+    proc_text.indexOf()
+    // A regular expression to find and match the setcpm command in the strudel text editor
+    const regex = /setcpm\(.*\)/g;
     if (findCpm) {
-        var start = proc_text.indexOf("setcpm(") + 8;
-        var end = proc_text.indexOf(")", start);
-        var currentCpm = proc_text.substring(start, end).trim();
-        proc_text = proc_text.replaceAll(`setcpm(${currentCpm})`, `setcpm(${newCpm})`)
+        proc_text = proc_text.replaceAll(regex, `setcpm(${newCpm})`)
     }
     else {
         proc_text = `setcpm(${newCpm})\n` + proc_text;
@@ -78,7 +79,7 @@ export default function StrudelDemo() {
     const [isPreprocessing, setIsPreprocessing] = useState(false);
 
     //Set cpm function using state
-    const [cpm, setCpm] = useState(0);
+    const [cpm, setCpm] = useState(30);
 
     const handleDJButtons = () => {
         ProcessText()
@@ -115,8 +116,16 @@ export default function StrudelDemo() {
     }
 
     const handleCpmChange = (newCpm) => {
-        SetNewCpm(newCpm);
-        setCpm(newCpm);
+        if (!isNaN(newCpm) || newCpm.includes("/")) {
+            SetNewCpm(newCpm)
+            setCpm(newCpm);
+        }
+        else {
+            setCpm("CPM not applicable");
+        }
+        if (isPlaying) {
+            globalEditor.evaluate();
+        }
     }
 
 const hasRun = useRef(false);
@@ -192,6 +201,7 @@ return (
                             <br />
                             <DJButtons
                                 changeCpm={handleCpmChange}
+                                displayCpm={cpm}
                             />
                         </nav>
                     </div>
