@@ -2,10 +2,8 @@ const DJButtons = ({ changeCpm, displayCpm }) => {
 
     return (
         <>
-            <p className="fs-5 fw-bold text-secondary">Current CPM: {displayCpm}</p>
+            <p className="fs-5 fw-bold ">Current CPM: {displayCpm}</p>
             <div className="input-group mb-3">
-                <button className="btn btn-outline-primary" type="button">+</button>
-                <button className="btn btn-outline-danger" type="button">-</button>
                 <input id="cpmUserInput" type="text" className="form-control" placeholder="CPM" aria-label="CPM control" />
                 <button onClick={() => {
                     const cpm = document.getElementById("cpmUserInput").value;
@@ -13,27 +11,29 @@ const DJButtons = ({ changeCpm, displayCpm }) => {
                 }} className="btn btn-outline-secondary" type="button" id="button-addon2">Set</button>
             </div>
 
-            <label for="volume" className="form-label fs-5 fw-bold text-dark">Volume</label>
+            <label for="volume" className="form-label fs-5 fw-bold ">Bass Volume</label>
+            <input type="range" className="form-range" id="volume" />
+
+            <label for="volume" className="form-label fs-5 fw-bold ">Drums 2 Volume</label>
+            <input type="range" className="form-range" id="volume" />
+
+            <label for="volume" className="form-label fs-5 fw-bold ">Drums 3 Volume</label>
             <input type="range" className="form-range" id="volume" />
 
             <div>
             </div>
 
             <div className="form-check form-switch">
-                <input className="form-check-input" type="checkbox" id="switch1" />
-                <label className="form-check-label" for="switch1">Default switch checkbox input</label>
+                <input className="form-check-input " type="checkbox" id="Bassline" />
+                <label className="form-check-label fs-5 fw-bold " for="switch1">Bassline</label>
             </div>
             <div className="form-check form-switch">
-                <input className="form-check-input" type="checkbox" id="switch2" />
-                <label className="form-check-label" for="switch2">Checked switch checkbox input</label>
+                <input className="form-check-input" type="checkbox" id="Drums 1" />
+                <label className="form-check-label fs-5 fw-bold " for="switch2" >Drums 1</label>
             </div>
             <div className="form-check form-switch">
-                <input className="form-check-input" type="checkbox" id="switch3" />
-                <label className="form-check-label" for="switch3">Disabled switch checkbox input</label>
-            </div>
-            <div className="form-check form-switch">
-                <input className="form-check-input" type="checkbox" id="switch4" />
-                <label className="form-check-label" for="switch4">Disabled checked switch checkbox input</label>
+                <input className="form-check-input" type="checkbox" id="Drums 2" />
+                <label className="form-check-label fs-5 fw-bold mb-4" for="switch3">Drums 2</label>
             </div>
     </>
   );

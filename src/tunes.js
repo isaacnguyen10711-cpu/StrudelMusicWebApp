@@ -50,7 +50,7 @@ note(pick(basslines, bass))
 
 
 main_arp: 
-note(pick(arpeggiator1, "<0 1 2 3>/2"))
+note(pick(arpeggiator2, "<0 1 2 3>/2"))
 .sound("supersaw")
 .lpf(300)
 .adsr("0:0:.5:.1")
@@ -59,7 +59,7 @@ note(pick(arpeggiator1, "<0 1 2 3>/2"))
 .postgain(pick(gain_patterns, pattern))
 
 
-drums:
+drums1:
 stack(
   s("tech:5")
   .postgain(6)

@@ -13,7 +13,7 @@ import DJButtons from './components/DJButtons';
 import PlayButtons from './components/PlayButtons';
 import PreprocessButtons from './components/PreprocessButtons';
 import TextToProcess from './components/TextToProcess';
-import Editor from './components/Editor';
+import TextEditor from './components/TextEditor';
 
 
 //Test comments
@@ -33,7 +33,6 @@ export function ProcAndPlay() {
 //}
 
 export function Proc() {
-
     let proc_text = document.getElementById('proc').value
     let proc_text_replaced = proc_text.replaceAll('<p1_Radio>', ProcessText);
     ProcessText(proc_text);
@@ -56,7 +55,6 @@ export function SetNewCpm(newCpm) {
     // Find if there is a phrase called setcpm() in the textarea
     let findCpm = proc_text.includes("setcpm(");
     console.log("Found CPM: " + findCpm)
-    proc_text.indexOf()
     // A regular expression to find and match the setcpm command in the strudel text editor
     const regex = /setcpm\(.*\)/g;
     if (findCpm) {
@@ -71,20 +69,20 @@ export function SetNewCpm(newCpm) {
     globalEditor.setCode(proc_text);
 }
 
+export function 
+
 export default function StrudelDemo() {
 
     // Setting up states to react to changes when users click on buttons
-    const [isConfiguringDJ, setIsConfiguringDJ] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
     const [isPreprocessing, setIsPreprocessing] = useState(false);
 
     //Set cpm function using state
     const [cpm, setCpm] = useState(30);
 
-    const handleDJButtons = () => {
-        ProcessText()
-        setIsConfiguringDJ(true)
-    }
+    // Set hide or open text area using states
+    const [textAreaIsOpen, setTextAreaIsOpen] = useState(false);
+    const [textEditorIsOpen, setTextEditorIsOpen] = useState(false);
 
     // React-styled function to handle play button
     const handlePlay = () => {
@@ -122,9 +120,28 @@ export default function StrudelDemo() {
         }
         else {
             setCpm("CPM not applicable");
+
         }
         if (isPlaying) {
             globalEditor.evaluate();
+        }
+    }
+
+    const handleTextAreaToggle = () => {
+        if (textAreaIsOpen) {
+            setTextAreaIsOpen(false)
+        }
+        else {
+            setTextAreaIsOpen(true);
+        }
+    }
+
+    const handleTextEditorToggle = () => {
+        if (textEditorIsOpen) {
+            setTextEditorIsOpen(false)
+        }
+        else {
+            setTextEditorIsOpen(true);
         }
     }
 
@@ -171,50 +188,52 @@ useEffect(() => {
 
 
 return (
-    <div>
-        <h2>Strudel Demo</h2>
+    <div className="App">
+        <h2 className="">Strudel Music </h2>
         <main>
-
             <div className="container-fluid">
-                <div className="row">
-                    <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                        <TextToProcess
+                <div className="row mb-3 justify-content-center">
+                    <PlayButtons
+                        playClick={handlePlay}
+                        stopClick={handleStop}
+                        isPlaying={isPlaying}
+                    /> 
+                </div>
 
+                <div className="row mb-3">
+                        <PreprocessButtons
+                            preprocessClick={handlePreprocess}
+                            preprocessAndPlayClick={handleProcesAndPlay}
+                            isPreprocessing={isPreprocessing}
                         />
-                    </div>
-                    <div className="col-md-4">
-
-                        <nav>
-                            <PreprocessButtons
-                                preprocessClick={handlePreprocess}
-                                preprocessAndPlayClick={handleProcesAndPlay}
-                                isPreprocessing={isPreprocessing}
-                            />
-                            <br />
-                            <br />
-                            <PlayButtons
-                                playClick={handlePlay}
-                                stopClick={handleStop}
-                                isPlaying={isPlaying}
-                            />
-                            <br />
-                            <br />
+                </div>
+                    <div className="row">
+                        <div className="col-4">
                             <DJButtons
                                 changeCpm={handleCpmChange}
                                 displayCpm={cpm}
                             />
-                        </nav>
+                        </div>
                     </div>
-                </div>
 
-                <div className="row">
-                    <Editor
+                <div className="row mb-4">
+                        <TextToProcess
+                            isOpen={textAreaIsOpen}
+                            toggle={handleTextAreaToggle}
                     />
                 </div>
+                <div className="row">
+                    <TextEditor
+                        isOpen={textEditorIsOpen}
+                        toggle={handleTextEditorToggle}
+                    />
+                </div>
+
             </div>
+
             <canvas id="roll"></canvas>
-        </main >
-    </div >
+        </main>
+    </div>
 );
 
 

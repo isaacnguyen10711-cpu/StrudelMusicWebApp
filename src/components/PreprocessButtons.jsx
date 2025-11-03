@@ -2,9 +2,14 @@ const ProcessButtons = ({ preprocessClick, preprocessAndPlayClick }) => {
 
     return (
         <>
-            <button onClick={preprocessClick} id="process" className="btn btn-outline-primary">Preprocess</button>
-            <button onClick={preprocessAndPlayClick} id="process_play" className="btn btn-outline-primary">Proc & Play</button>
-
+            <div className="row justify-content-center">
+                <div className="col-auto">
+                    <button onClick={preprocessClick} id="process" className="btn btn-outline-primary fs-5">Preprocess</button>
+                </div>
+                <div className="col-auto">
+                    <button onClick={preprocessAndPlayClick} id="process_play" className="btn btn-outline-primary fs-5">Proc & Play</button>
+                </div>
+            </div>
 
     </>
   );
