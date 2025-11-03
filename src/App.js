@@ -82,8 +82,8 @@ export function InstrumentList(procText) {
     return instrumentalList;
 }
 
-export function PlayInstrument(instrumentId) {
-    let 
+export function PlaySpecificInstrument(instrument) {
+    
 }
 
 export default function StrudelDemo() {
@@ -102,7 +102,7 @@ export default function StrudelDemo() {
     const [textEditorIsOpen, setTextEditorIsOpen] = useState(false);
 
     const [instrumentList, setInstrumentList] = useState([]);
-    const
+    const [instrumentIsPlayingList, setInstrumentIsPlayingList] = useState([])
 
 
     // React-styled function to handle play button
@@ -134,6 +134,7 @@ export default function StrudelDemo() {
         }
     }
 
+    // React handler that changes the CPM state when the user enters a new value
     const handleCpmChange = (newCpm) => {
         if (!isNaN(newCpm) || newCpm.includes("/")) {
             SetNewCpm(procText, setProcText, newCpm)
@@ -166,6 +167,29 @@ export default function StrudelDemo() {
         }
     }
 
+    // Use the default value list of the instruments which is "true" to switch them individually with index value
+    const handlePlayInstrumentToggle = (index) => {
+        var newStates = [];
+        for (let i = 0; i < instrumentIsPlayingList.length; i++) {
+            newStates[i] = instrumentIsPlayingList[i];
+        }
+
+        newStates[index] = !instrumentIsPlayingList[index]
+        setInstrumentIsPlayingList(newStates)
+
+        var instrument = instrumentList[index];
+        var updatedText = procText;
+        if (newStates[index] === true) {
+            updatedText = updatedText.replaceAll("_instrumental_" + instrument, "instrumental_" + instrument)
+        }
+        else {
+            updatedText = procText.replaceAll("instrumental_" + instrument, "_instrumental_" + instrument)
+        }
+        setProcText(updatedText);
+        globalEditor.setCode(updatedText);
+    }
+    
+    
 
 const hasRun = useRef(false);
 
@@ -204,6 +228,13 @@ useEffect(() => {
 
         Proc(procText, setProcText)
         setInstrumentList(InstrumentList(procText))
+
+        // A new array to push "true" to all instrument states
+        const defaultStates = [];
+        for (let i = 0; i < InstrumentList(procText).length; i++) {
+            defaultStates.push(true);
+        }
+        setInstrumentIsPlayingList(defaultStates)
     }
 
 }, []);
@@ -239,7 +270,8 @@ return (
                         <div className="col-4">
                         <DJButtons
                             instrumentalList={instrumentList}
-                            
+                            instrumentIsPlaying={instrumentIsPlayingList}
+                            toggleInstrument={handlePlayInstrumentToggle}
                             />
                         </div>
                     </div>
@@ -247,8 +279,10 @@ return (
                 <div className="row mb-4">
                     <TextToProcess
                         text={procText}
-                            isOpen={textAreaIsOpen}
-                            toggle={handleTextAreaToggle}
+                        setProcText={setProcText}
+                        isOpen={textAreaIsOpen}
+                        toggle={handleTextAreaToggle}
+                        instrumentList={InstrumentList(procText)}
                     />
                 </div>
                 <div className="row">

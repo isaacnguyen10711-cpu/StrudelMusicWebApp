@@ -1,5 +1,5 @@
 
-const DJButtons = ({ instrumentalList }) => {
+const DJButtons = ({ instrumentalList, instrumentIsPlaying, toggleInstrument }) => {
     return (
         <>
             <label htmlFor="volume" className="form-label fs-5 fw-bold ">Bass Volume</label>
@@ -16,7 +16,7 @@ const DJButtons = ({ instrumentalList }) => {
             {instrumentalList.length > 0 && (
                 instrumentalList.map((instrument, index) => (
                     <div key={index} className="form-check form-switch">
-                        <input className="form-check-input " type="checkbox" id={`instrument_${index}`} />
+                        <input className="form-check-input " type="checkbox" id={`instrument_${index}`} checked={instrumentIsPlaying[index]} onChange={()=> toggleInstrument(index)} />
                         <label className="form-check-label fs-5 fw-bold " htmlFor={instrument}>{instrument}</label>
                     </div>
                 ))
