@@ -61,7 +61,7 @@ export function SetNewCpm(procText, setProcText, newCpm) {
 // A function to collect all the instruments existing in the text box
 export function CreateInstrumentList(procText) {
     // Created a regex to match which ever instrument that starts with instrumental can be used with the radio buttons
-    const regex = /^instrumental_(.*):/gm;
+    const regex = /^\s*instrumental_(.*):/gm;
 
     // Find the instruments and convert it to an array
     const instrumentListRaw = Array.from(procText.matchAll(regex));
@@ -96,9 +96,49 @@ export function PlayInstrumentToggle(index, instrumentIsPlayingList, instrumentL
 }
 
 
-export function PlaySpecificInstrument(instrument) {
-    
+// A function that adds the new instruments found after the user changes the text area
+export function NewInstrument(newText, instrumentList, instrumentIsPlayingList) {
+    var newInstruments = CreateInstrumentList(newText);
+    var newInstrumentList = [];
+    var newInstrumentIsPlayingList = [];
+
+    for (let i = 0; i < instrumentList.length; i++) {
+        newInstrumentList[i] = instrumentList[i];
+    }
+    for (let i = 0; i < instrumentIsPlayingList.length; i++) {
+        newInstrumentIsPlayingList[i] = instrumentIsPlayingList[i];
+    }
+
+    // Add the new instrments to the current list state if they havent existed yet
+    newInstruments.forEach((instrument) => {
+        if (newInstrumentList.includes(instrument)) {
+            console.log(`${instrument} already exists`)
+        }
+        else {
+            newInstrumentList.push(instrument)
+            newInstrumentIsPlayingList.push(true)
+        }
+    });
+
+    var updatedInstrumentList = []
+    var updatedInstrumentIsPlayingList = [];
+
+    // Remove the instruments that have been deleted 
+    newInstrumentList.forEach((instrument) => {
+        if (!newInstruments.includes(instrument)) {
+            console.log(`${instrument} have been removed`)
+        }
+        else {
+            updatedInstrumentList.push(instrument)
+            updatedInstrumentIsPlayingList.push(true)
+        }
+    });
+    return {
+        updatedInstrumentList: updatedInstrumentList,
+        updatedInstrumentIsPlayingList: updatedInstrumentIsPlayingList
+    }
 }
+
 
 export default function StrudelDemo() {
 
@@ -165,6 +205,10 @@ export default function StrudelDemo() {
         }
     }
 
+    const handleCpmChangeButtons = () => {
+
+    }
+
     const handleTextAreaToggle = () => {
         if (textAreaIsOpen) {
             setTextAreaIsOpen(false)
@@ -185,6 +229,10 @@ export default function StrudelDemo() {
 
     // A handler to handle the playInstrumentToggle 
     const handlePlayInstrumentToggle = (index) => {
+        if (!globalEditor) {
+            console.log("globalEditor has not initiated ye")
+            return;
+        }
         var updatedText = PlayInstrumentToggle(index, instrumentIsPlayingList, instrumentList, procText, setInstrumentIsPlayingList)
         setProcText(updatedText);
         globalEditor.setCode(updatedText);
@@ -193,31 +241,12 @@ export default function StrudelDemo() {
         }
         
     }
-    // A handler that adds the new instruments found after the user changes the text area
+    // A handler that adds new instruments found or delete the ones that have been removed after the user changes the text area
     const handleNewInstrument = (newText) => {
-        var newInstruments = CreateInstrumentList(newText);
-        var newInstrumentList = [];
-        var newInstrumentIsPlayingList = [];
+        var { updatedInstrumentList, updatedInstrumentIsPlayingList } = NewInstrument(newText, instrumentList, instrumentIsPlayingList);
 
-        for (let i = 0; i < instrumentList.length; i++) {
-            newInstrumentList[i] = instrumentList[i];
-        }
-        for (let i = 0; i < instrumentIsPlayingList.length; i++) {
-            newInstrumentIsPlayingList[i] = instrumentIsPlayingList[i];
-        }
-
-        // Add the new instrments to the current list state if they havent existed yet
-        newInstruments.forEach((instrument) => {
-            if (newInstrumentList.includes(instrument)) {
-                console.log(`${instrument} already exists`)
-            }
-            else {
-                newInstrumentList.push(instrument)
-                newInstrumentIsPlayingList.push(true)
-            }
-        });
-        setInstrumentIsPlayingList(newInstrumentIsPlayingList)
-        setInstrumentList(newInstrumentList)
+        setInstrumentIsPlayingList(updatedInstrumentIsPlayingList)
+        setInstrumentList(updatedInstrumentList)
     }
 
 
@@ -275,7 +304,7 @@ return (
         <h2 className="">Strudel Music </h2>
         <main>
             <div className="container-fluid">
-                <div className="row mb-3 justify-content-center">
+                <div className="row mb-2 justify-content-center">
                     <PlayButtons
                         playClick={handlePlay}
                         stopClick={handleStop}
