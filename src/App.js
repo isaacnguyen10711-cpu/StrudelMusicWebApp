@@ -9,12 +9,13 @@ import { getAudioContext, webaudioOutput, registerSynthSounds } from '@strudel/w
 import { registerSoundfonts } from '@strudel/soundfonts';
 import { stranger_tune } from './tunes';
 import console_monkey_patch, { getD3Data } from './console-monkey-patch';
-import DJButtons from './components/DJButtons';
+import Instruments from './components/Instruments';
 import PlayButtons from './components/PlayButtons';
 import PreprocessButtons from './components/PreprocessButtons';
 import TextToProcess from './components/TextToProcess';
 import TextEditor from './components/TextEditor';
 import CpmAndEffects from './components/CpmAndEffects';
+import VolumeControls from './components/VolumeControls';
 
 
 //Test comments
@@ -81,6 +82,29 @@ export function InstrumentList(procText) {
     console.log("Instrumental List: " + instrumentalList)
     return instrumentalList;
 }
+
+// Use the default value list of the instruments which is "true" to switch them individually with index value
+export function PlayInstrumentToggle(index, instrumentIsPlayingList, instrumentList, procText, setInstrumentIsPlayingList ) {
+    var newStates = [];
+    for (let i = 0; i < instrumentIsPlayingList.length; i++) {
+        newStates[i] = instrumentIsPlayingList[i];
+    }
+
+    newStates[index] = !instrumentIsPlayingList[index]
+    setInstrumentIsPlayingList(newStates)
+
+    var instrument = instrumentList[index];
+    var updatedText = procText;
+    if (newStates[index] === true) {
+        updatedText = updatedText.replaceAll("_instrumental_" + instrument, "instrumental_" + instrument)
+
+    }
+    else {
+        updatedText = procText.replaceAll("instrumental_" + instrument, "_instrumental_" + instrument)
+    }
+    return updatedText
+}
+
 
 export function PlaySpecificInstrument(instrument) {
     
@@ -167,29 +191,21 @@ export default function StrudelDemo() {
         }
     }
 
-    // Use the default value list of the instruments which is "true" to switch them individually with index value
+    // A handler to handle the playInstrumentToggle 
     const handlePlayInstrumentToggle = (index) => {
-        var newStates = [];
-        for (let i = 0; i < instrumentIsPlayingList.length; i++) {
-            newStates[i] = instrumentIsPlayingList[i];
-        }
-
-        newStates[index] = !instrumentIsPlayingList[index]
-        setInstrumentIsPlayingList(newStates)
-
-        var instrument = instrumentList[index];
-        var updatedText = procText;
-        if (newStates[index] === true) {
-            updatedText = updatedText.replaceAll("_instrumental_" + instrument, "instrumental_" + instrument)
-        }
-        else {
-            updatedText = procText.replaceAll("instrumental_" + instrument, "_instrumental_" + instrument)
-        }
+        var updatedText = PlayInstrumentToggle(index, instrumentIsPlayingList, instrumentList, procText, setInstrumentIsPlayingList)
         setProcText(updatedText);
         globalEditor.setCode(updatedText);
+        ProcAndPlay(updatedText, setProcText)
     }
-    
-    
+
+    const handleNewText = (newText) => {
+        var newInstrument = InstrumentList(newText);
+        setInstrumentList(newInstrument);
+        setInstrumentIsPlayingList()
+
+    }
+
 
 const hasRun = useRef(false);
 
@@ -268,12 +284,16 @@ return (
                         />
                     </div>
                         <div className="col-4">
-                        <DJButtons
+                        <Instruments
                             instrumentalList={instrumentList}
                             instrumentIsPlaying={instrumentIsPlayingList}
                             toggleInstrument={handlePlayInstrumentToggle}
                             />
-                        </div>
+                    </div>
+                    <div className="col-4">
+                        <VolumeControls
+                        />
+                    </div>
                     </div>
 
                 <div className="row mb-4">
@@ -282,7 +302,8 @@ return (
                         setProcText={setProcText}
                         isOpen={textAreaIsOpen}
                         toggle={handleTextAreaToggle}
-                        instrumentList={InstrumentList(procText)}
+                        newText={handleNewText}
+                        
                     />
                 </div>
                 <div className="row">

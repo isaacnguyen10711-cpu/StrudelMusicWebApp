@@ -1,4 +1,5 @@
-const TextToProcess = ({text, isOpen, toggle, setProcText }) => {
+const TextToProcess = ({ text, isOpen, toggle, setProcText, newText }) => {
+
     return (
       <>
             <h4 htmlFor="exampleFormControlTextarea1" className="form-label">Text to preprocess</h4>
