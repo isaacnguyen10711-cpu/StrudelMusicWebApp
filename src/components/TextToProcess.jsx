@@ -1,4 +1,4 @@
-const TextToProcess = ({ text, isOpen, toggle, setProcText, newText }) => {
+const TextToProcess = ({ text, isOpen, toggle, setProcText }) => {
 
     return (
       <>

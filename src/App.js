@@ -35,22 +35,10 @@ export function ProcAndPlay(procText, setProcText) {
 //}
 
 export function Proc(procText, setProcText) {
-    let procTextreplaced = procText.replaceAll('<p1_Radio>', ProcessText);
-    ProcessText(procText);
-    setProcText(procTextreplaced)
-    globalEditor.setCode(procTextreplaced)
+    setProcText(procText)
+    globalEditor.setCode(procText)
 }
 
-
-export function ProcessText(match, ...args) {
-
-    //let replace = ""
-    //if (document.getElementById('flexRadioDefault2').checked) {
-    //    replace = "_"
-    //}
-
-    //return replace
-}
 
 export function SetNewCpm(procText, setProcText, newCpm) {
     // Find if there is a phrase called setcpm() in the textarea
@@ -70,7 +58,8 @@ export function SetNewCpm(procText, setProcText, newCpm) {
     globalEditor.setCode(updatedText);
 }
 
-export function InstrumentList(procText) {
+// A function to collect all the instruments existing in the text box
+export function CreateInstrumentList(procText) {
     // Created a regex to match which ever instrument that starts with instrumental can be used with the radio buttons
     const regex = /^instrumental_(.*):/gm;
 
@@ -78,18 +67,19 @@ export function InstrumentList(procText) {
     const instrumentListRaw = Array.from(procText.matchAll(regex));
     console.log("Instrumental List Raw: " + instrumentListRaw);
     // Convert the raw array to a new array with only the instruments name
-    const instrumentalList = instrumentListRaw.map(i => i[1]);
-    console.log("Instrumental List: " + instrumentalList)
-    return instrumentalList;
+    const instrumentList = instrumentListRaw.map(i => i[1]);
+    console.log("Instrumental List: " + instrumentList)
+    return instrumentList;
 }
 
 // Use the default value list of the instruments which is "true" to switch them individually with index value
-export function PlayInstrumentToggle(index, instrumentIsPlayingList, instrumentList, procText, setInstrumentIsPlayingList ) {
+export function PlayInstrumentToggle(index, instrumentIsPlayingList, instrumentList, procText, setInstrumentIsPlayingList) {
+    // Copy current states of the switches to a new list to adjust
     var newStates = [];
     for (let i = 0; i < instrumentIsPlayingList.length; i++) {
         newStates[i] = instrumentIsPlayingList[i];
     }
-
+    // Turn on or off the switches individually
     newStates[index] = !instrumentIsPlayingList[index]
     setInstrumentIsPlayingList(newStates)
 
@@ -146,6 +136,7 @@ export default function StrudelDemo() {
     // React-styled function to handle preprocess button
     const handlePreprocess = () => {
         Proc(procText, setProcText);
+        handleNewInstrument(procText)
         setIsPreprocessing(true);
     }
 
@@ -153,6 +144,7 @@ export default function StrudelDemo() {
     const handleProcesAndPlay = () => {
         if (globalEditor) {
             ProcAndPlay(procText, setProcText);
+            handleNewInstrument(procText)
             setIsPreprocessing(true);
             setIsPlaying(true);
         }
@@ -196,14 +188,36 @@ export default function StrudelDemo() {
         var updatedText = PlayInstrumentToggle(index, instrumentIsPlayingList, instrumentList, procText, setInstrumentIsPlayingList)
         setProcText(updatedText);
         globalEditor.setCode(updatedText);
-        ProcAndPlay(updatedText, setProcText)
+        if (isPlaying) {
+            ProcAndPlay(updatedText, setProcText);
+        }
+        
     }
+    // A handler that adds the new instruments found after the user changes the text area
+    const handleNewInstrument = (newText) => {
+        var newInstruments = CreateInstrumentList(newText);
+        var newInstrumentList = [];
+        var newInstrumentIsPlayingList = [];
 
-    const handleNewText = (newText) => {
-        var newInstrument = InstrumentList(newText);
-        setInstrumentList(newInstrument);
-        setInstrumentIsPlayingList()
+        for (let i = 0; i < instrumentList.length; i++) {
+            newInstrumentList[i] = instrumentList[i];
+        }
+        for (let i = 0; i < instrumentIsPlayingList.length; i++) {
+            newInstrumentIsPlayingList[i] = instrumentIsPlayingList[i];
+        }
 
+        // Add the new instrments to the current list state if they havent existed yet
+        newInstruments.forEach((instrument) => {
+            if (newInstrumentList.includes(instrument)) {
+                console.log(`${instrument} already exists`)
+            }
+            else {
+                newInstrumentList.push(instrument)
+                newInstrumentIsPlayingList.push(true)
+            }
+        });
+        setInstrumentIsPlayingList(newInstrumentIsPlayingList)
+        setInstrumentList(newInstrumentList)
     }
 
 
@@ -243,11 +257,11 @@ useEffect(() => {
             });
 
         Proc(procText, setProcText)
-        setInstrumentList(InstrumentList(procText))
+        setInstrumentList(CreateInstrumentList(procText))
 
         // A new array to push "true" to all instrument states
         const defaultStates = [];
-        for (let i = 0; i < InstrumentList(procText).length; i++) {
+        for (let i = 0; i < CreateInstrumentList(procText).length; i++) {
             defaultStates.push(true);
         }
         setInstrumentIsPlayingList(defaultStates)
@@ -302,7 +316,6 @@ return (
                         setProcText={setProcText}
                         isOpen={textAreaIsOpen}
                         toggle={handleTextAreaToggle}
-                        newText={handleNewText}
                         
                     />
                 </div>
