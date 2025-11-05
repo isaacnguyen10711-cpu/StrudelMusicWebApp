@@ -20,7 +20,8 @@ import VolumeControls from './components/VolumeControls';
 
 //Test comments
 
-let globalEditor = null;
+export let globalEditor = null;
+
 
 const handleD3Data = (event) => {
     console.log(event.detail);
@@ -40,24 +41,6 @@ export function Proc(procText, setProcText) {
 }
 
 
-export function SetNewCpm(procText, setProcText, newCpm) {
-    // Find if there is a phrase called setcpm() in the textarea
-    let findCpm = procText.includes("setcpm(");
-    console.log("Found CPM: " + findCpm)
-    // A regular expression to find and match the setcpm command in the strudel text editor
-    const regex = /setcpm\(.*\)/g;
-    if (findCpm) {
-        var updatedText = procText.replaceAll(regex, `setcpm(${newCpm})`)
-    }
-    else {
-        procText = `setcpm(${newCpm})\n` + procText;
-        console.log("No setcpm command found")
-
-    }
-    setProcText(updatedText);
-    globalEditor.setCode(updatedText);
-}
-
 // A function to collect all the instruments existing in the text box
 export function CreateInstrumentList(procText) {
     // Created a regex to match which ever instrument that starts with instrumental can be used with the radio buttons
@@ -71,74 +54,6 @@ export function CreateInstrumentList(procText) {
     console.log("Instrumental List: " + instrumentList)
     return instrumentList;
 }
-
-// Use the default value list of the instruments which is "true" to switch them individually with index value
-export function PlayInstrumentToggle(index, instrumentIsPlayingList, instrumentList, procText, setInstrumentIsPlayingList) {
-    // Copy current states of the switches to a new list to adjust
-    var newStates = [];
-    for (let i = 0; i < instrumentIsPlayingList.length; i++) {
-        newStates[i] = instrumentIsPlayingList[i];
-    }
-    // Turn on or off the switches individually
-    newStates[index] = !instrumentIsPlayingList[index]
-    setInstrumentIsPlayingList(newStates)
-
-    var instrument = instrumentList[index];
-    var updatedText = procText;
-    if (newStates[index] === true) {
-        updatedText = updatedText.replaceAll("_instrumental_" + instrument, "instrumental_" + instrument)
-
-    }
-    else {
-        updatedText = procText.replaceAll("instrumental_" + instrument, "_instrumental_" + instrument)
-    }
-    return updatedText
-}
-
-
-// A function that adds the new instruments found after the user changes the text area
-export function NewInstrument(newText, instrumentList, instrumentIsPlayingList) {
-    var newInstruments = CreateInstrumentList(newText);
-    var newInstrumentList = [];
-    var newInstrumentIsPlayingList = [];
-
-    for (let i = 0; i < instrumentList.length; i++) {
-        newInstrumentList[i] = instrumentList[i];
-    }
-    for (let i = 0; i < instrumentIsPlayingList.length; i++) {
-        newInstrumentIsPlayingList[i] = instrumentIsPlayingList[i];
-    }
-
-    // Add the new instrments to the current list state if they havent existed yet
-    newInstruments.forEach((instrument) => {
-        if (newInstrumentList.includes(instrument)) {
-            console.log(`${instrument} already exists`)
-        }
-        else {
-            newInstrumentList.push(instrument)
-            newInstrumentIsPlayingList.push(true)
-        }
-    });
-
-    var updatedInstrumentList = []
-    var updatedInstrumentIsPlayingList = [];
-
-    // Remove the instruments that have been deleted 
-    newInstrumentList.forEach((instrument) => {
-        if (!newInstruments.includes(instrument)) {
-            console.log(`${instrument} have been removed`)
-        }
-        else {
-            updatedInstrumentList.push(instrument)
-            updatedInstrumentIsPlayingList.push(true)
-        }
-    });
-    return {
-        updatedInstrumentList: updatedInstrumentList,
-        updatedInstrumentIsPlayingList: updatedInstrumentIsPlayingList
-    }
-}
-
 
 export default function StrudelDemo() {
 
@@ -157,97 +72,6 @@ export default function StrudelDemo() {
 
     const [instrumentList, setInstrumentList] = useState([]);
     const [instrumentIsPlayingList, setInstrumentIsPlayingList] = useState([])
-
-
-    // React-styled function to handle play button
-    const handlePlay = () => {
-        if (globalEditor) {
-            globalEditor.evaluate();
-            setIsPlaying(true);
-        }
-    }
-    // React-styled function to handle stop button
-    const handleStop = () => {
-        if (globalEditor) {
-            globalEditor.stop();
-            setIsPlaying(false);
-        }
-    }
-    // React-styled function to handle preprocess button
-    const handlePreprocess = () => {
-        Proc(procText, setProcText);
-        handleNewInstrument(procText)
-        setIsPreprocessing(true);
-    }
-
-    // React-styled function to handle preprocess and play button
-    const handleProcesAndPlay = () => {
-        if (globalEditor) {
-            ProcAndPlay(procText, setProcText);
-            handleNewInstrument(procText)
-            setIsPreprocessing(true);
-            setIsPlaying(true);
-        }
-    }
-
-    // React handler that changes the CPM state when the user enters a new value
-    const handleCpmChange = (newCpm) => {
-        if (!isNaN(newCpm) || newCpm.includes("/")) {
-            SetNewCpm(procText, setProcText, newCpm)
-            setCpm(newCpm);
-        }
-        else {
-            setCpm("CPM not applicable");
-
-        }
-        if (isPlaying) {
-            globalEditor.evaluate();
-        }
-    }
-
-    const handleCpmChangeButtons = () => {
-
-    }
-
-    const handleTextAreaToggle = () => {
-        if (textAreaIsOpen) {
-            setTextAreaIsOpen(false)
-        }
-        else {
-            setTextAreaIsOpen(true);
-        }
-    }
-
-    const handleTextEditorToggle = () => {
-        if (textEditorIsOpen) {
-            setTextEditorIsOpen(false)
-        }
-        else {
-            setTextEditorIsOpen(true);
-        }
-    }
-
-    // A handler to handle the playInstrumentToggle 
-    const handlePlayInstrumentToggle = (index) => {
-        if (!globalEditor) {
-            console.log("globalEditor has not initiated ye")
-            return;
-        }
-        var updatedText = PlayInstrumentToggle(index, instrumentIsPlayingList, instrumentList, procText, setInstrumentIsPlayingList)
-        setProcText(updatedText);
-        globalEditor.setCode(updatedText);
-        if (isPlaying) {
-            ProcAndPlay(updatedText, setProcText);
-        }
-        
-    }
-    // A handler that adds new instruments found or delete the ones that have been removed after the user changes the text area
-    const handleNewInstrument = (newText) => {
-        var { updatedInstrumentList, updatedInstrumentIsPlayingList } = NewInstrument(newText, instrumentList, instrumentIsPlayingList);
-
-        setInstrumentIsPlayingList(updatedInstrumentIsPlayingList)
-        setInstrumentList(updatedInstrumentList)
-    }
 
 
 const hasRun = useRef(false);
@@ -306,31 +130,41 @@ return (
             <div className="container-fluid">
                 <div className="row mb-2 justify-content-center">
                     <PlayButtons
-                        playClick={handlePlay}
-                        stopClick={handleStop}
                         isPlaying={isPlaying}
+                        setIsPlaying={setIsPlaying}
                     /> 
                 </div>
 
                 <div className="row mb-3">
-                        <PreprocessButtons
-                            preprocessClick={handlePreprocess}
-                            preprocessAndPlayClick={handleProcesAndPlay}
-                            isPreprocessing={isPreprocessing}
+                    <PreprocessButtons
+                        procText={procText}
+                        setProcText={setProcText}
+                        instrumentList={instrumentList}
+                        instrumentIsPlayingList={instrumentIsPlayingList}
+                        setInstrumentList={setInstrumentList}
+                        setInstrumentIsPlayingList={setInstrumentIsPlayingList}
+                        setIsPreprocessing={setIsPreprocessing}
+                        setIsPlaying={setIsPlaying}
                         />
                 </div>
                 <div className="row">
                     <div className="col-4">
                         <CpmAndEffects
-                            changeCpm={handleCpmChange}
-                            displayCpm={cpm}
+                            procText={procText}
+                            setProcText={setProcText}
+                            setCpm={setCpm}
+                            cpm={cpm}
+                            isPlaying={isPlaying}
                         />
                     </div>
                         <div className="col-4">
                         <Instruments
-                            instrumentalList={instrumentList}
-                            instrumentIsPlaying={instrumentIsPlayingList}
-                            toggleInstrument={handlePlayInstrumentToggle}
+                            procText={procText}
+                            setProcText={setProcText}
+                            instrumentIsPlayingList={instrumentIsPlayingList}
+                            setInstrumentIsPlayingList={setInstrumentIsPlayingList}
+                            instrumentList={instrumentList}
+                            isPlaying={isPlaying}
                             />
                     </div>
                     <div className="col-4">
@@ -341,17 +175,17 @@ return (
 
                 <div className="row mb-4">
                     <TextToProcess
-                        text={procText}
+                        procText={procText}
                         setProcText={setProcText}
-                        isOpen={textAreaIsOpen}
-                        toggle={handleTextAreaToggle}
+                        textAreaIsOpen={textAreaIsOpen}
+                        setTextAreaIsOpen={setTextAreaIsOpen}
                         
                     />
                 </div>
                 <div className="row">
                     <TextEditor
-                        isOpen={textEditorIsOpen}
-                        toggle={handleTextEditorToggle}
+                        textEditorIsOpen={textEditorIsOpen}
+                        setTextEditorIsOpen={setTextEditorIsOpen}
                     />
                 </div>
 

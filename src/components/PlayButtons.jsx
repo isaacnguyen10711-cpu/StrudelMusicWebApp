@@ -1,13 +1,31 @@
-const PlayButtons = ({ playClick, stopClick, isPlaying }) => {
-    
+import { globalEditor } from "../App";
+
+const PlayButtons = ({ isPlaying, setIsPlaying }) => {
+
+    // React-styled function to handle play button
+    const handlePlay = () => {
+        if (globalEditor) {
+            globalEditor.evaluate();
+            setIsPlaying(true); 
+        }
+    }
+
+    // React-styled function to handle stop button
+    const handleStop = () => {
+        if (globalEditor) {
+            globalEditor.stop();
+            setIsPlaying(false);
+        }
+    }
+
     return (
         <>
             <div className="row justify-content-center">
                 <div className="col-auto">
-                    {isPlaying ? <button onClick={stopClick} id="stop" className="btn">
+                    {isPlaying ? <button onClick={handleStop} id="stop" className="btn">
                         <i className="bi bi-pause-circle-fill text-danger" style={{ fontSize: "100px" }}></i>
-                    </button> 
-                        : <button onClick={playClick} id="play" className="btn">
+                    </button>
+                        : <button onClick={handlePlay} id="play" className="btn">
                             <i className="bi bi-play-circle-fill text-success" style={{ fontSize: "100px" }}></i>
                         </button>}
                     
