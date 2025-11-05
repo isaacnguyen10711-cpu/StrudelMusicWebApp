@@ -43,8 +43,8 @@ export function Proc(procText, setProcText) {
 
 // A function to collect all the instruments existing in the text box
 export function CreateInstrumentList(procText) {
-    // Created a regex to match which ever instrument that starts with instrumental can be used with the radio buttons
-    const regex = /^\s*instrumental_(.*):/gm;
+    // Created a regex to match which ever instrument that starts with instrumental_ can be used with the radio buttons
+    const regex = /^\s*_?instrumental_(.*):/gm;
 
     // Find the instruments and convert it to an array
     const instrumentListRaw = Array.from(procText.matchAll(regex));

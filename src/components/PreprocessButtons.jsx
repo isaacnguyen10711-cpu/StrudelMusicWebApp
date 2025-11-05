@@ -11,16 +11,12 @@ const ProcessButtons = ({ procText, setProcText, instrumentList, instrumentIsPla
         var newInstrumentList = [];
         var newInstrumentIsPlayingList = [];
 
-        for (let i = 0; i < instrumentList.length; i++) {
-            newInstrumentList[i] = instrumentList[i];
-        }
-        for (let i = 0; i < instrumentIsPlayingList.length; i++) {
-            newInstrumentIsPlayingList[i] = instrumentIsPlayingList[i];
-        }
-
-        // Add the new instrments to the current list state if they havent existed yet
+        // Add the new instruments to the current list state if they havent existed yet
         newInstruments.forEach((instrument) => {
-            if (newInstrumentList.includes(instrument)) {
+            var existingInstrumentIndex = instrumentList.indexOf(instrument)
+            if (existingInstrumentIndex !== -1) {
+                newInstrumentList.push(instrument)
+                newInstrumentIsPlayingList.push(instrumentIsPlayingList[existingInstrumentIndex])
                 console.log(`${instrument} already exists`)
             }
             else {
@@ -29,22 +25,22 @@ const ProcessButtons = ({ procText, setProcText, instrumentList, instrumentIsPla
             }
         });
 
-        var updatedInstrumentList = []
-        var updatedInstrumentIsPlayingList = [];
+        //var updatedInstrumentList = []
+        //var updatedInstrumentIsPlayingList = [];
 
-        // Remove the instruments that have been deleted 
-        newInstrumentList.forEach((instrument) => {
-            if (!newInstruments.includes(instrument)) {
-                console.log(`${instrument} have been removed`)
-            }
-            else {
-                updatedInstrumentList.push(instrument)
-                updatedInstrumentIsPlayingList.push(true)
-            }
-        });
+        //// Remove the instruments that have been deleted 
+        //newInstrumentList.forEach((instrument) => {
+        //    if (!newInstruments.includes(instrument)) {
+        //        console.log(`${instrument} have been removed`)
+        //    }
+        //    else {
+        //        updatedInstrumentList.push(instrument)
+        //        updatedInstrumentIsPlayingList.push(true)
+        //    }
+        //});
         return {
-            updatedInstrumentList: updatedInstrumentList,
-            updatedInstrumentIsPlayingList: updatedInstrumentIsPlayingList
+            updatedInstrumentList: newInstrumentList,
+            updatedInstrumentIsPlayingList: newInstrumentIsPlayingList
         }
     }
 
