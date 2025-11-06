@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "F:\\IT PRACTICAL\\2025 Sem 2\\Web Technology\\WebTechAssignment\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|f:\\it practical\\2025 sem 2\\web technology\\webtechassignment\\src\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|f:\\it practical\\2025 sem 2\\web technology\\webtechassignment\\src\\components\\playbuttons.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\playbuttons.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|f:\\it practical\\2025 sem 2\\web technology\\webtechassignment\\src\\components\\cpmandeffects.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\cpmandeffects.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|f:\\it practical\\2025 sem 2\\web technology\\webtechassignment\\src\\components\\preprocessbuttons.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\preprocessbuttons.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|f:\\it practical\\2025 sem 2\\web technology\\webtechassignment\\src\\components\\instruments.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\instruments.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|f:\\it practical\\2025 sem 2\\web technology\\webtechassignment\\src\\components\\volumecontrols.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\volumecontrols.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|f:\\it practical\\2025 sem 2\\web technology\\webtechassignment\\src\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,17 +26,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "App.js",
               "DocumentMoniker": "F:\\IT PRACTICAL\\2025 Sem 2\\Web Technology\\WebTechAssignment\\src\\App.js",
               "RelativeDocumentMoniker": "src\\App.js",
               "ToolTip": "F:\\IT PRACTICAL\\2025 Sem 2\\Web Technology\\WebTechAssignment\\src\\App.js",
               "RelativeToolTip": "src\\App.js",
-              "ViewState": "AgIAACwBAAAAAAAAAAAAADQBAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAmwDEAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-10-23T07:55:21.887Z",
               "IsPinned": true,
@@ -44,41 +44,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CpmAndEffects.jsx",
-              "DocumentMoniker": "F:\\IT PRACTICAL\\2025 Sem 2\\Web Technology\\WebTechAssignment\\src\\components\\CpmAndEffects.jsx",
-              "RelativeDocumentMoniker": "src\\components\\CpmAndEffects.jsx",
-              "ToolTip": "F:\\IT PRACTICAL\\2025 Sem 2\\Web Technology\\WebTechAssignment\\src\\components\\CpmAndEffects.jsx",
-              "RelativeToolTip": "src\\components\\CpmAndEffects.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA1AAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "PreprocessButtons.jsx",
+              "DocumentMoniker": "F:\\IT PRACTICAL\\2025 Sem 2\\Web Technology\\WebTechAssignment\\src\\components\\PreprocessButtons.jsx",
+              "RelativeDocumentMoniker": "src\\components\\PreprocessButtons.jsx",
+              "ToolTip": "F:\\IT PRACTICAL\\2025 Sem 2\\Web Technology\\WebTechAssignment\\src\\components\\PreprocessButtons.jsx",
+              "RelativeToolTip": "src\\components\\PreprocessButtons.jsx",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAAAsAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-04T15:37:44.121Z",
+              "WhenOpened": "2025-11-05T14:17:12.53Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "PlayButtons.jsx",
-              "DocumentMoniker": "F:\\IT PRACTICAL\\2025 Sem 2\\Web Technology\\WebTechAssignment\\src\\components\\PlayButtons.jsx",
-              "RelativeDocumentMoniker": "src\\components\\PlayButtons.jsx",
-              "ToolTip": "F:\\IT PRACTICAL\\2025 Sem 2\\Web Technology\\WebTechAssignment\\src\\components\\PlayButtons.jsx",
-              "RelativeToolTip": "src\\components\\PlayButtons.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-04T15:31:30.437Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "Instruments.jsx",
               "DocumentMoniker": "F:\\IT PRACTICAL\\2025 Sem 2\\Web Technology\\WebTechAssignment\\src\\components\\Instruments.jsx",
               "RelativeDocumentMoniker": "src\\components\\Instruments.jsx",
               "ToolTip": "F:\\IT PRACTICAL\\2025 Sem 2\\Web Technology\\WebTechAssignment\\src\\components\\Instruments.jsx",
               "RelativeToolTip": "src\\components\\Instruments.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABwAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-03T06:37:18.197Z",
+              "WhenOpened": "2025-11-05T14:15:32.346Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "VolumeControls.jsx",
+              "DocumentMoniker": "F:\\IT PRACTICAL\\2025 Sem 2\\Web Technology\\WebTechAssignment\\src\\components\\VolumeControls.jsx",
+              "RelativeDocumentMoniker": "src\\components\\VolumeControls.jsx",
+              "ToolTip": "F:\\IT PRACTICAL\\2025 Sem 2\\Web Technology\\WebTechAssignment\\src\\components\\VolumeControls.jsx",
+              "RelativeToolTip": "src\\components\\VolumeControls.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-11-05T13:51:18.285Z",
               "EditorCaption": ""
             },
             {

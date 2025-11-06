@@ -118,7 +118,15 @@ useEffect(() => {
             defaultStates.push(true);
         }
         setInstrumentIsPlayingList(defaultStates)
+
+        const handleCreateInstrumentList = () => {
+
+        }
     }
+
+   
+
+
 
 }, []);
 
@@ -169,6 +177,7 @@ return (
                     </div>
                     <div className="col-4">
                         <VolumeControls
+                            instrumentList={instrumentList}
                         />
                     </div>
                     </div>

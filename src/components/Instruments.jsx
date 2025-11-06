@@ -1,6 +1,7 @@
 import { globalEditor } from "../App";
 import { ProcAndPlay } from "../App";
 
+
 const Instruments = ({ procText, setProcText, instrumentIsPlayingList, setInstrumentIsPlayingList, instrumentList, isPlaying }) => {
     // Use the default value list of the instruments which is "true" to switch them individually with index value
     function PlayInstrumentToggle(index, instrumentIsPlayingList, instrumentList, procText, setInstrumentIsPlayingList) {

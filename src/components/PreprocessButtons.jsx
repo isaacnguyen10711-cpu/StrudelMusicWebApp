@@ -25,19 +25,6 @@ const ProcessButtons = ({ procText, setProcText, instrumentList, instrumentIsPla
             }
         });
 
-        //var updatedInstrumentList = []
-        //var updatedInstrumentIsPlayingList = [];
-
-        //// Remove the instruments that have been deleted 
-        //newInstrumentList.forEach((instrument) => {
-        //    if (!newInstruments.includes(instrument)) {
-        //        console.log(`${instrument} have been removed`)
-        //    }
-        //    else {
-        //        updatedInstrumentList.push(instrument)
-        //        updatedInstrumentIsPlayingList.push(true)
-        //    }
-        //});
         return {
             updatedInstrumentList: newInstrumentList,
             updatedInstrumentIsPlayingList: newInstrumentIsPlayingList
