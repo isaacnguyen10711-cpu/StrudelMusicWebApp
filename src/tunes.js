@@ -49,7 +49,8 @@ note(pick(basslines, bass))
 .postgain(pick(gain_patterns, pattern))
 
 
-main_arp: 
+
+instrumental_melody: 
 note(pick(arpeggiator2, "<0 1 2 3>/2"))
 .sound("supersaw")
 .lpf(300)
@@ -57,6 +58,7 @@ note(pick(arpeggiator2, "<0 1 2 3>/2"))
 .room(0.6)
 .lpenv(3.3)
 .postgain(pick(gain_patterns, pattern))
+
 
 
 instrumental_drums1:
@@ -77,6 +79,7 @@ stack(
   .postgain(.25),
 )
 
+
 instrumental_drums2: 
 stack(
   s("[~ hh]*4").bank("RolandTR808").room(0.3).speed(0.75).gain(1.2),
@@ -93,8 +96,7 @@ stack(
   .speed(0.5)
   .rarely(jux(rev)),
 )
+
 //Remixed and reproduced from Algorave Dave's code found here: https://www.youtube.com/watch?v=ZCcpWzhekEY
-// all(x => x.gain(mouseX.range(0,1)))
-// all(x => x.log())
 
 // @version 1.2`;

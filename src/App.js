@@ -118,14 +118,7 @@ useEffect(() => {
             defaultStates.push(true);
         }
         setInstrumentIsPlayingList(defaultStates)
-
-        const handleCreateInstrumentList = () => {
-
-        }
     }
-
-   
-
 
 
 }, []);
@@ -164,6 +157,14 @@ return (
                             cpm={cpm}
                             isPlaying={isPlaying}
                         />
+                        <div className="mt-4">
+                            <VolumeControls
+                                instrumentList={instrumentList}
+                                procText={procText}
+                                setProcText={setProcText}
+                                isPlaying={isPlaying}
+                            />
+                        </div>
                     </div>
                         <div className="col-4">
                         <Instruments
@@ -175,14 +176,9 @@ return (
                             isPlaying={isPlaying}
                             />
                     </div>
-                    <div className="col-4">
-                        <VolumeControls
-                            instrumentList={instrumentList}
-                        />
-                    </div>
-                    </div>
+                </div>
 
-                <div className="row mb-4">
+                <div className="row mt-4 mb-4">
                     <TextToProcess
                         procText={procText}
                         setProcText={setProcText}
