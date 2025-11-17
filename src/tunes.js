@@ -96,7 +96,4 @@ stack(
   .speed(0.5)
   .rarely(jux(rev)),
 )
-
-//Remixed and reproduced from Algorave Dave's code found here: https://www.youtube.com/watch?v=ZCcpWzhekEY
-
-// @version 1.2`;
+`;

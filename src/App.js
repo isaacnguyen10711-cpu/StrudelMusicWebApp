@@ -14,8 +14,9 @@ import PlayButtons from './components/PlayButtons';
 import PreprocessButtons from './components/PreprocessButtons';
 import TextToProcess from './components/TextToProcess';
 import TextEditor from './components/TextEditor';
-import CpmAndEffects from './components/CpmAndEffects';
+import Cpm from './components/Cpm';
 import VolumeControls from './components/VolumeControls';
+import AudioEffects from './components/AudioEffects';
 
 
 //Test comments
@@ -63,8 +64,6 @@ export default function StrudelDemo() {
     const [isPlaying, setIsPlaying] = useState(false);
     const [isPreprocessing, setIsPreprocessing] = useState(false);
 
-    //Set cpm function using state
-    const [cpm, setCpm] = useState(30);
 
     // Set hide or open text area using states
     const [textAreaIsOpen, setTextAreaIsOpen] = useState(false);
@@ -150,11 +149,9 @@ return (
                 </div>
                 <div className="row">
                     <div className="col-4">
-                        <CpmAndEffects
+                        <Cpm
                             procText={procText}
                             setProcText={setProcText}
-                            setCpm={setCpm}
-                            cpm={cpm}
                             isPlaying={isPlaying}
                         />
                         <div className="mt-4">
@@ -175,6 +172,15 @@ return (
                             instrumentList={instrumentList}
                             isPlaying={isPlaying}
                             />
+                    </div>
+
+                    <div className="col-4">
+                        <AudioEffects
+                            instrumentList={instrumentList}
+                            procText={procText}
+                            setProcText={setProcText}
+                            isPlaying={isPlaying}
+                        />
                     </div>
                 </div>
 

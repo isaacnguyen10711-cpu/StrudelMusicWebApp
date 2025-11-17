@@ -1,8 +1,11 @@
 import { globalEditor } from "../App";
 import { useState } from "react";
 
-const CpmAndEffects = ({ procText, setProcText, setCpm, isPlaying, cpm }) => {
+const Cpm = ({ procText, setProcText, isPlaying }) => {
+
     const [userInput, setUserInput] = useState("");
+    //Set cpm function using state
+    const [cpm, setCpm] = useState(30);
 
     // A function that finds the text setcpm() in the text area and change the nummber inside the () based on input
     function SetNewCpm(procText, setProcText, newCpm) {
@@ -25,34 +28,49 @@ const CpmAndEffects = ({ procText, setProcText, setCpm, isPlaying, cpm }) => {
 
     // React handler that changes the CPM state when the user enters a new value
     const handleCpmChange = (newCpm) => {
-        if (!isNaN(newCpm) || newCpm.includes("/")) {
-            SetNewCpm(procText, setProcText, newCpm)
-            setCpm(newCpm);
+        if (newCpm < 1 || newCpm > 70) {
+            alert("CPM has to be between 1 and 70")
         }
         else {
-            setCpm("CPM not applicable");
+            if (!isNaN(newCpm) || newCpm.includes("/")) {
+                SetNewCpm(procText, setProcText, newCpm)
+                setCpm(newCpm);
+            }
+            else {
+                setCpm("CPM not applicable");
 
-        }
-        if (isPlaying) {
-            globalEditor.evaluate();
+            }
+            if (isPlaying) {
+                globalEditor.evaluate();
+            }
         }
     }
 
     const handleCpmIncrease = () => {
         var newCpm = cpm + 1
-        setCpm(newCpm)
-        SetNewCpm(procText, setProcText, newCpm)
-        if (isPlaying) {
-            globalEditor.evaluate();
+        if (newCpm < 1 || newCpm > 70) {
+            alert("CPM has to be between 1 and 70")
+        }
+        else {
+            setCpm(newCpm)
+            SetNewCpm(procText, setProcText, newCpm)
+            if (isPlaying) {
+                globalEditor.evaluate();
+            }
         }
     }
 
     const handleCpmDecrease = () => {
         var newCpm = cpm - 1
-        setCpm(newCpm)
-        SetNewCpm(procText, setProcText, newCpm)
-        if (isPlaying) {
-            globalEditor.evaluate();
+        if (newCpm < 1 || newCpm > 70) {
+            alert("CPM has to be between 1 and 70")
+        }
+        else {
+            setCpm(newCpm)
+            SetNewCpm(procText, setProcText, newCpm)
+            if (isPlaying) {
+                globalEditor.evaluate();
+            }
         }
     }
 
@@ -60,8 +78,8 @@ const CpmAndEffects = ({ procText, setProcText, setCpm, isPlaying, cpm }) => {
         <>
             <p className="fs-5 fw-bold ">CPM: {cpm}</p>
             <div className="input-group mb-3">
-                <button onClick={handleCpmIncrease} class="btn btn-outline-primary" type="button">+</button>
-                <button onClick={handleCpmDecrease} class="btn btn-outline-danger" type="button">-</button>
+                <button onClick={handleCpmIncrease} className="btn btn-outline-primary" type="button">+</button>
+                <button onClick={handleCpmDecrease} className="btn btn-outline-danger" type="button">-</button>
                 <input id="cpmUserInput" type="text" className="form-control" onChange={(e) => setUserInput(e.target.value)}
                     placeholder="Enter CPM" aria-label="CPM control" />
                 <button onClick={() => handleCpmChange(userInput)} className="btn btn-outline-light" type="button" id="button-addon2">Set</button>
@@ -71,4 +89,4 @@ const CpmAndEffects = ({ procText, setProcText, setCpm, isPlaying, cpm }) => {
     )
 }
 
-export default CpmAndEffects;
+export default Cpm;

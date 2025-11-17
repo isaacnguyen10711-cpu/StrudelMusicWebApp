@@ -7,18 +7,19 @@ const VolumeControls = ({ procText, setProcText, isPlaying }) => {
     const [volume, setVolume] = useState(10)
 
     const changeVolume = (newVolume) => {
-        var volumeMain = `all(x => x.postgain(${newVolume}))`;
+        var volumeMaster = `all(x => x.postgain(${newVolume}))`;
+        // using regex to find the postgain() command
         const regex = /all\(x => x\.postgain\(.*\)\)/gs
         var newText = procText
-
-        let findVolume = procText.includes("all(x => x.postgain(");
+        // set 2 conditions if found or not found the postgain() command
+        let findVolume = newText.includes("all(x => x.postgain(");
         if (findVolume) {
-            newText = newText.replaceAll(regex, volumeMain)
+            newText = newText.replaceAll(regex, volumeMaster)
         }
         else {
-            newText = newText + "\n" + volumeMain
+            newText = newText + "\n" + volumeMaster
         }
-
+        // set the text and the editor with the new text after changing volume
         setProcText(newText)
         globalEditor.setCode(newText)
     }
