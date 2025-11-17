@@ -1,10 +1,7 @@
 import { globalEditor } from "../App";
-import { ProcAndPlay } from "../App";
-import { useState, useEffect } from "react";
 
-const VolumeControls = ({ procText, setProcText, isPlaying }) => {
 
-    const [volume, setVolume] = useState(10)
+const VolumeControls = ({ volume, setVolume, procText, setProcText, isPlaying }) => {
 
     const changeVolume = (newVolume) => {
         var volumeMaster = `all(x => x.postgain(${newVolume}))`;
@@ -29,20 +26,36 @@ const VolumeControls = ({ procText, setProcText, isPlaying }) => {
         changeVolume(volume / 4)
         if (isPlaying) {
             globalEditor.evaluate();
-        }
+        }   
+    }
 
+    // Reset volume to the beginning
+    const resetVolume = () => {
+        const regex = /all\(x => x\.postgain\(.*\)\)/gs
+        var newText = procText
+        let findVolume = newText.includes("all(x => x.postgain(");
+        if (findVolume) {
+            newText = newText.replaceAll(regex, '')
+            setVolume(10)
+        }
+        setProcText(newText)
+        globalEditor.setCode(newText)
+        if (isPlaying) {
+            globalEditor.evaluate();
+        } 
     }
 
     return (
         <>
             <div>
-                <label className="form-label fs-5 fw-bold mb-2">VOLUME: {volume}</label>
+                <p className="fs-5 fw-bold ">Volume: {volume}</p>
                 {/*// Add max volume as 20*/}
                 <input type="range" min="0" max="20" step="1" className="form-range" value={volume}
                     onChange={(e) => {
                         handleVolumeChange(Number(e.target.value))
-                        }} />
-                </div>
+                    }} />
+                <button onClick={resetVolume} className="btn btn-outline-light mt-2">RESET VOLUME</button>
+            </div>
 
         </>
     )

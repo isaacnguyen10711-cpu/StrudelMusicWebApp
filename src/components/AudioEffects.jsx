@@ -1,11 +1,7 @@
 import { globalEditor } from "../App";
-import { ProcAndPlay } from "../App";
-import { useState, useEffect } from "react";
 
-const AudioEffects = ({ procText, setProcText, isPlaying }) => {
 
-    const [reverb, setReverb] = useState(0)
-    const [delay, setDelay] = useState(0)
+const AudioEffects = ({ reverb, setReverb, delay, setDelay, procText, setProcText, isPlaying }) => {
 
     const applyReverb = (reverbValue) => {
         var reverbMaster = `all(x => x.room(${reverbValue}))`;
@@ -59,7 +55,6 @@ const AudioEffects = ({ procText, setProcText, isPlaying }) => {
                 globalEditor.evaluate();
             }
         }
-
     }
 
     const handleReverbIncrease = () => {
@@ -75,7 +70,6 @@ const AudioEffects = ({ procText, setProcText, isPlaying }) => {
         if (isPlaying) {
             globalEditor.evaluate();
         }
-
     }
 
     const handleReverbDecrease = () => {
@@ -90,7 +84,6 @@ const AudioEffects = ({ procText, setProcText, isPlaying }) => {
         if (isPlaying) {
             globalEditor.evaluate();
         }
-
     }
 
     const handleDelay = () => {
@@ -109,7 +102,6 @@ const AudioEffects = ({ procText, setProcText, isPlaying }) => {
                 globalEditor.evaluate()
             }
         }
-
     }
 
     const handleDelayIncrease = () => {
@@ -125,7 +117,6 @@ const AudioEffects = ({ procText, setProcText, isPlaying }) => {
         if (isPlaying) {
             globalEditor.evaluate();
         }
-
     }
 
     const handleDelayDecrease = () => {
@@ -140,13 +131,12 @@ const AudioEffects = ({ procText, setProcText, isPlaying }) => {
         if (isPlaying) {
             globalEditor.evaluate();
         }
-
     }
 
     return (
         <>
-            <div className="row mb-4 text-center">
-                <label style={{ marginLeft: "-20px" }} className="form-label fs-5 fw-bold mb-2">AUDIO EFFECTS </label>
+            <div className="row mb-3 text-center">
+                <p style={{ marginLeft: "-20px" }} className="fs-5 fw-bold ">AUDIO EFFECTS</p>
             </div>
 
             <div className="row mb-4">

@@ -1,11 +1,10 @@
 import { globalEditor } from "../App";
 import { useState } from "react";
 
-const Cpm = ({ procText, setProcText, isPlaying }) => {
+const Cpm = ({ cpm, setCpm, procText, setProcText, isPlaying }) => {
 
     const [userInput, setUserInput] = useState("");
-    //Set cpm function using state
-    const [cpm, setCpm] = useState(30);
+
 
     // A function that finds the text setcpm() in the text area and change the nummber inside the () based on input
     function SetNewCpm(procText, setProcText, newCpm) {

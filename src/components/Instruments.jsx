@@ -7,10 +7,10 @@ const Instruments = ({ procText, setProcText, instrumentIsPlayingList, setInstru
     function PlayInstrumentToggle(index, instrumentIsPlayingList, instrumentList, procText, setInstrumentIsPlayingList) {
         // Copy current states of the switches to a new list to adjust
         var newStates = [];
-        for (let i = 0; i < instrumentIsPlayingList.length; i++) {
+        for (var i = 0; i < instrumentIsPlayingList.length; i++) {
             newStates[i] = instrumentIsPlayingList[i];
         }
-        // Turn on or off the switches individually
+        // Turn on or off the switches individually (!true means false)
         newStates[index] = !instrumentIsPlayingList[index]
         setInstrumentIsPlayingList(newStates)
 
@@ -21,7 +21,7 @@ const Instruments = ({ procText, setProcText, instrumentIsPlayingList, setInstru
 
         }
         else {
-            updatedText = procText.replaceAll("instrumental_" + instrument, "_instrumental_" + instrument)
+            updatedText = updatedText.replaceAll("instrumental_" + instrument, "_instrumental_" + instrument)
         }
         return updatedText
     }
@@ -36,7 +36,7 @@ const Instruments = ({ procText, setProcText, instrumentIsPlayingList, setInstru
         setProcText(updatedText);
         globalEditor.setCode(updatedText);
         if (isPlaying) {
-            ProcAndPlay(updatedText, setProcText);
+            globalEditor.evaluate();
         }
 
     }

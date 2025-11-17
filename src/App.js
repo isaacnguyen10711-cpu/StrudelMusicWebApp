@@ -17,6 +17,7 @@ import TextEditor from './components/TextEditor';
 import Cpm from './components/Cpm';
 import VolumeControls from './components/VolumeControls';
 import AudioEffects from './components/AudioEffects';
+import LoadAndSaveSettings from './LoadAndSaveSettings'
 
 
 //Test comments
@@ -64,6 +65,8 @@ export default function StrudelDemo() {
     const [isPlaying, setIsPlaying] = useState(false);
     const [isPreprocessing, setIsPreprocessing] = useState(false);
 
+    //Set cpm function using state
+    const [cpm, setCpm] = useState(30);
 
     // Set hide or open text area using states
     const [textAreaIsOpen, setTextAreaIsOpen] = useState(false);
@@ -71,6 +74,11 @@ export default function StrudelDemo() {
 
     const [instrumentList, setInstrumentList] = useState([]);
     const [instrumentIsPlayingList, setInstrumentIsPlayingList] = useState([])
+
+    const [volume, setVolume] = useState(10)
+
+    const [reverb, setReverb] = useState(0)
+    const [delay, setDelay] = useState(0)
 
 
 const hasRun = useRef(false);
@@ -125,7 +133,27 @@ useEffect(() => {
 
 return (
     <div className="App">
-        <h2 className="">Strudel Music </h2>
+        <div className='row'>
+            <h2 className="">Strudel Music </h2>
+        </div>
+        <div className='row'>
+            <LoadAndSaveSettings
+                procText={procText}
+                setProcText={setProcText}
+                cpm={cpm}
+                setCpm={setCpm}
+                instrumentList={instrumentList}
+                setInstrumentList={setInstrumentList}
+                instrumentIsPlayingList={instrumentIsPlayingList}
+                setInstrumentIsPlayingList={setInstrumentIsPlayingList}
+                volume={volume}
+                setVolume={setVolume}
+                reverb={reverb}
+                setReverb={setReverb}
+                delay={delay}
+                setDelay={setDelay}
+            />
+        </div>
         <main>
             <div className="container-fluid">
                 <div className="row mb-2 justify-content-center">
@@ -152,11 +180,14 @@ return (
                         <Cpm
                             procText={procText}
                             setProcText={setProcText}
+                            setCpm={setCpm}
+                            cpm={cpm}
                             isPlaying={isPlaying}
                         />
                         <div className="mt-4">
                             <VolumeControls
-                                instrumentList={instrumentList}
+                                volume={volume}
+                                setVolume={setVolume}
                                 procText={procText}
                                 setProcText={setProcText}
                                 isPlaying={isPlaying}
@@ -176,7 +207,10 @@ return (
 
                     <div className="col-4">
                         <AudioEffects
-                            instrumentList={instrumentList}
+                            delay={delay}
+                            setDelay={setDelay}
+                            reverb={reverb}
+                            setReverb={setReverb}
                             procText={procText}
                             setProcText={setProcText}
                             isPlaying={isPlaying}
