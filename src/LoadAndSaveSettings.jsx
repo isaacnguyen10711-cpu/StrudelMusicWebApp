@@ -23,7 +23,8 @@ const LoadAndSaveSettings = ({ procText, setProcText, cpm, setCpm, instrumentLis
         const settings = JSON.parse(existedSettings)
 
         // Check all conditions to see if they exists or not
-        if (settings.procText != null) {
+        // Use undefined for proctext since it might be an empty string
+        if (settings.procText !== undefined) {
             setProcText(settings.procText)
             globalEditor.setCode(settings.procText)
         }

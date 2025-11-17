@@ -48,7 +48,7 @@ const VolumeControls = ({ volume, setVolume, procText, setProcText, isPlaying })
     return (
         <>
             <div>
-                <p className="fs-5 fw-bold ">Volume: {volume}</p>
+                <p style={{ marginBottom: "10px" }} className="fs-5 fw-bold ">Volume: {volume}</p>
                 {/*// Add max volume as 20*/}
                 <input type="range" min="0" max="20" step="1" className="form-range" value={volume}
                     onChange={(e) => {
