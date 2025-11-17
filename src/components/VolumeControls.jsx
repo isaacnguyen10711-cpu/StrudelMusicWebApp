@@ -37,6 +37,7 @@ const VolumeControls = ({ procText, setProcText, isPlaying }) => {
         <>
             <div>
                 <label className="form-label fs-5 fw-bold mb-2">VOLUME: {volume}</label>
+                {/*// Add max volume as 20*/}
                 <input type="range" min="0" max="20" step="1" className="form-range" value={volume}
                     onChange={(e) => {
                         handleVolumeChange(Number(e.target.value))

@@ -9,10 +9,10 @@ const AudioEffects = ({ procText, setProcText, isPlaying }) => {
 
     const applyReverb = (reverbValue) => {
         var reverbMaster = `all(x => x.room(${reverbValue}))`;
-        // using regex to find the postgain() command
+        // using regex to find the reverb() command
         const regex = /all\(x => x\.room\(.*\)\)/gs
         var newText = procText
-        // set 2 conditions if found or not found the postgain() command
+        // set 2 conditions if found or not found the reverb() command
         let findReverb = newText.includes("all(x => x.room(");
         if (findReverb) {
             newText = newText.replaceAll(regex, reverbMaster)
@@ -27,10 +27,10 @@ const AudioEffects = ({ procText, setProcText, isPlaying }) => {
 
     const applyDelay = (delayValue) => {
         var delayMaster = `all(x => x.delay(${delayValue}))`;
-        // using regex to find the postgain() command
+        // using regex to find the delay() command
         const regex = /all\(x => x\.delay\(.*\)\)/gs
         var newText = procText
-        // set 2 conditions if found or not found the postgain() command
+        // set 2 conditions if found or not found the delay() command
         let findDelay = newText.includes("all(x => x.delay(");
         if (findDelay) {
             newText = newText.replaceAll(regex, delayMaster)
@@ -44,6 +44,7 @@ const AudioEffects = ({ procText, setProcText, isPlaying }) => {
     }
 
     const handleReverb = () => {
+        // Turn on and off the effect
         if (reverb == 0) {
             setReverb(1)
             applyReverb(1)
@@ -62,6 +63,7 @@ const AudioEffects = ({ procText, setProcText, isPlaying }) => {
     }
 
     const handleReverbIncrease = () => {
+        // Round the value since js does not handle decimal numbers well
         var newReverb = Math.round((reverb + 0.1) * 10) / 10
         if (reverb < 2) {
             setReverb(newReverb)
@@ -92,6 +94,7 @@ const AudioEffects = ({ procText, setProcText, isPlaying }) => {
     }
 
     const handleDelay = () => {
+        // Turn on and off delay effect
         if (delay == 0) {
             setDelay(1)
             applyDelay(1)
@@ -110,6 +113,7 @@ const AudioEffects = ({ procText, setProcText, isPlaying }) => {
     }
 
     const handleDelayIncrease = () => {
+        // Round the value since js does not handle decimal numbers well
         var newDelay = Math.round((delay + 0.1) * 10) / 10
         if (delay < 2) {
             setDelay(newDelay)
@@ -147,6 +151,7 @@ const AudioEffects = ({ procText, setProcText, isPlaying }) => {
 
             <div className="row mb-4">
                 <div className="col">
+                {/*Apply inline styling to make sure when the reverb or delay value changes, same layout is still kept*/}
                     <button style={{ width: "40px", height: "40px" }} onClick={handleReverbIncrease} className="btn btn-outline-primary " type="button">+</button>
                     <button style={{ width: "40px", height: "40px", marginRight: "20px" }} onClick={handleReverbDecrease} className="btn btn-outline-danger " type="button">-</button>
                     <button style={{ width: "250px", height: "50px", marginRight: "20px" }} onClick={handleReverb} className="btn btn-outline-light " type="button">REVERB EFFECT</button> 
