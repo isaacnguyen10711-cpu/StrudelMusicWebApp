@@ -34,8 +34,17 @@ A reset button which reset the volume to the default level, which is 10.
 This is where users enter their music coding. I added a hide display toggle to make the whole layout looks clean and users can hide or
 open whenever they want
 
+### Load and Save settings
+This function uses the local storage in the browser with the name "StrudelMusicAppSettings" and it will write all the current states
+to a json format file in the browser's local storage which can be found in the application section when users click on inspect the 
+page.
+
 ## Demonstration video: .
+https://drive.google.com/drive/folders/1E5McwYxKNEESZnYIrefIzOmEiVGs63RM?usp=sharing
 
 ## Bonus points:
+### Instrument detector
 As I have mentioned, the intrument toggle was the most difficult feature that I implemented. This feature is able to detects all the 
-instruments in the text as long as the user enter the word "instrumental_" in front of every instrument they add to the text area
+instruments in the text as long as the user enter the word "instrumental_" in front of every instrument they add to the text area. 
+
+
