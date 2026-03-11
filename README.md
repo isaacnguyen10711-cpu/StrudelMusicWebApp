@@ -1,5 +1,12 @@
 # Getting Started with Strudel Music 
 
+## How to start the app:
+
+### Commands
+1. Go to the terminal and run "npm i" to install all npm dependencies
+2. After successfully installed, run "npm start" in the terminal
+3. This will open a web page and render the app
+
 ## Controls that I have implemented:
 
 ### Play and Stop Buttons
