@@ -1,5 +1,4 @@
 import { globalEditor } from "../App";
-import { ProcAndPlay } from "../App";
 
 
 const Instruments = ({ procText, setProcText, instrumentIsPlayingList, setInstrumentIsPlayingList, instrumentList, isPlaying }) => {

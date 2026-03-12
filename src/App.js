@@ -8,7 +8,7 @@ import { transpiler } from '@strudel/transpiler';
 import { getAudioContext, webaudioOutput, registerSynthSounds } from '@strudel/webaudio';
 import { registerSoundfonts } from '@strudel/soundfonts';
 import { stranger_tune } from './tunes';
-import console_monkey_patch, { getD3Data } from './console-monkey-patch';
+/*import console_monkey_patch, { getD3Data } from './console-monkey-patch';*/
 import Instruments from './components/Instruments';
 import PlayButtons from './components/PlayButtons';
 import PreprocessButtons from './components/PreprocessButtons';
@@ -63,7 +63,6 @@ export default function StrudelDemo() {
 
     // Setting up states to react to changes when users click on buttons
     const [isPlaying, setIsPlaying] = useState(false);
-    const [isPreprocessing, setIsPreprocessing] = useState(false);
 
     //Set cpm function using state
     const [cpm, setCpm] = useState(30);
@@ -87,7 +86,7 @@ useEffect(() => {
 
     if (!hasRun.current) {
         document.addEventListener("d3Data", handleD3Data);
-        console_monkey_patch();
+        /*console_monkey_patch();*/
         hasRun.current = true;
         //Code copied from example: https://codeberg.org/uzu/strudel/src/branch/main/examples/codemirror-repl
             //init canvas
@@ -128,7 +127,7 @@ useEffect(() => {
     }
 
 
-}, []);
+}, [procText]);
 
 
 return (
@@ -171,7 +170,6 @@ return (
                         instrumentIsPlayingList={instrumentIsPlayingList}
                         setInstrumentList={setInstrumentList}
                         setInstrumentIsPlayingList={setInstrumentIsPlayingList}
-                        setIsPreprocessing={setIsPreprocessing}
                         setIsPlaying={setIsPlaying}
                         />
                 </div>

@@ -2,8 +2,7 @@ import { globalEditor } from "../App";
 import { Proc, ProcAndPlay, CreateInstrumentList } from "../App";
 
 
-const ProcessButtons = ({ procText, setProcText, instrumentList, instrumentIsPlayingList, setInstrumentList, setInstrumentIsPlayingList,
-    setIsPreprocessing, setIsPlaying }) => {
+const ProcessButtons = ({ procText, setProcText, instrumentList, instrumentIsPlayingList, setInstrumentList, setInstrumentIsPlayingList, setIsPlaying }) => {
 
     // A function that adds the new instruments found after the user changes the text area
     function NewInstrument(newText, instrumentList, instrumentIsPlayingList) {
@@ -44,7 +43,7 @@ const ProcessButtons = ({ procText, setProcText, instrumentList, instrumentIsPla
     const handlePreprocess = () => {
         Proc(procText, setProcText);
         handleNewInstrument(procText)
-        setIsPreprocessing(true);
+        
     }
 
     // React-styled function to handle preprocess and play button
@@ -52,7 +51,6 @@ const ProcessButtons = ({ procText, setProcText, instrumentList, instrumentIsPla
         if (globalEditor) {
             ProcAndPlay(procText, setProcText);
             handleNewInstrument(procText)
-            setIsPreprocessing(true);
             setIsPlaying(true);
         }
     }

@@ -1,5 +1,4 @@
 import { globalEditor } from "./App.js";
-import { useState, useEffect } from "react";
 
 const LoadAndSaveSettings = ({ procText, setProcText, cpm, setCpm, instrumentList, setInstrumentList,
     instrumentIsPlayingList, setInstrumentIsPlayingList, volume, setVolume, reverb, setReverb, delay, setDelay }) => {
@@ -53,7 +52,7 @@ const LoadAndSaveSettings = ({ procText, setProcText, cpm, setCpm, instrumentLis
     return (
         <>
             <div className="row">
-                <button style={{ width: "90px", height: "40px", marginLeft: "1300px" }} onClick={SaveCurrentSettings} className='btn btn-outline-success fw-bold'>SAVE</button>
+                <button style={{ width: "90px", height: "40px", marginLeft: "1200px" }} onClick={SaveCurrentSettings} className='btn btn-outline-success fw-bold'>SAVE</button>
                 <button style={{ width: "90px", height: "40px", marginLeft: "10px" }} onClick={LoadExistedSettings} className='btn btn-outline-info fw-bold'>LOAD</button>
             </div>
 

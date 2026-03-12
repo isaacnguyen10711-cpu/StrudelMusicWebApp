@@ -41,7 +41,7 @@ const AudioEffects = ({ reverb, setReverb, delay, setDelay, procText, setProcTex
 
     const handleReverb = () => {
         // Turn on and off the effect
-        if (reverb == 0) {
+        if (reverb === 0) {
             setReverb(1)
             applyReverb(1)
             if (isPlaying) {
@@ -88,7 +88,7 @@ const AudioEffects = ({ reverb, setReverb, delay, setDelay, procText, setProcTex
 
     const handleDelay = () => {
         // Turn on and off delay effect
-        if (delay == 0) {
+        if (delay === 0) {
             setDelay(1)
             applyDelay(1)
             if (isPlaying) {
