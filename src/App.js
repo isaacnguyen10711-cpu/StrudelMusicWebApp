@@ -173,7 +173,7 @@ return (
                         setIsPlaying={setIsPlaying}
                         />
                 </div>
-                <div className="row g-4 control-grid">
+                <div className="row control-grid">
                     <div className="col-12 col-lg-4 control-section">
                         <Cpm
                             procText={procText}
