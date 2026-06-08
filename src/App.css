@@ -2,6 +2,99 @@
     text-align: center;
     background: linear-gradient(130deg, #1d1160,#E62020);
     color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.app-shell {
+    max-width: 1440px;
+    padding: 0 1rem 2rem;
+}
+
+.app-header-row,
+.settings-row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.app-title {
+    margin: 0.75rem 0 0.25rem;
+}
+
+.settings-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+}
+
+.settings-button {
+    min-width: 90px;
+    min-height: 40px;
+}
+
+.play-toggle-button {
+    margin-top: -1rem;
+}
+
+.play-toggle-button i {
+    font-size: 100px;
+    line-height: 1;
+}
+
+.control-section {
+    min-width: 0;
+}
+
+.instrument-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 48px;
+    padding-left: 0;
+}
+
+.instrument-toggle .form-check-input {
+    flex: 0 0 auto;
+    float: none;
+    margin: 0;
+}
+
+.instrument-toggle .form-check-label {
+    margin: 0;
+    overflow-wrap: anywhere;
+    text-align: left;
+}
+
+.effect-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.effect-stepper {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+}
+
+.effect-button {
+    width: min(250px, 100%);
+    min-height: 50px;
+}
+
+.effect-value {
+    width: 110px;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+#roll {
+    max-width: 100%;
 }
 
 .App-logo {
@@ -37,6 +130,74 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+@media (max-width: 991.98px) {
+    .app-shell {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .control-grid {
+        text-align: center;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .app-title {
+        font-size: 1.6rem;
+    }
+
+    .settings-actions {
+        justify-content: center;
+        padding-top: 0.5rem;
+    }
+
+    .play-toggle-button {
+        margin-top: 0;
+        padding: 0;
+    }
+
+    .play-toggle-button i {
+        font-size: 76px;
+    }
+
+    .input-group {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .input-group .btn,
+    .input-group .form-control {
+        border-radius: 0.375rem !important;
+    }
+
+    .input-group .form-control {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+
+    .effect-control {
+        display: grid;
+        grid-template-columns: 40px 40px 1fr;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .effect-button {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .effect-value {
+        grid-column: 1 / -1;
+        width: 100%;
+        text-align: center;
+    }
+
+    textarea.form-control {
+        min-height: 260px;
+    }
 }
 
 

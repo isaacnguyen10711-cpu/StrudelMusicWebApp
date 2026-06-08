@@ -51,9 +51,9 @@ const LoadAndSaveSettings = ({ procText, setProcText, cpm, setCpm, instrumentLis
 
     return (
         <>
-            <div className="row">
-                <button style={{ width: "90px", height: "40px", marginLeft: "1200px" }} onClick={SaveCurrentSettings} className='btn btn-outline-success fw-bold'>SAVE</button>
-                <button style={{ width: "90px", height: "40px", marginLeft: "10px" }} onClick={LoadExistedSettings} className='btn btn-outline-info fw-bold'>LOAD</button>
+            <div className="settings-actions">
+                <button onClick={SaveCurrentSettings} className='btn btn-outline-success fw-bold settings-button'>SAVE</button>
+                <button onClick={LoadExistedSettings} className='btn btn-outline-info fw-bold settings-button'>LOAD</button>
             </div>
 
         </>

@@ -132,10 +132,10 @@ useEffect(() => {
 
 return (
     <div className="App">
-        <div className='row'>
-            <h2 className="">Strudel Music </h2>
+        <div className='row app-header-row'>
+            <h2 className="app-title">Strudel Music </h2>
         </div>
-        <div className='row'>
+        <div className='row settings-row'>
             <LoadAndSaveSettings
                 procText={procText}
                 setProcText={setProcText}
@@ -154,7 +154,7 @@ return (
             />
         </div>
         <main>
-            <div className="container-fluid">
+            <div className="container-fluid app-shell">
                 <div className="row mb-2 justify-content-center">
                     <PlayButtons
                         isPlaying={isPlaying}
@@ -173,8 +173,8 @@ return (
                         setIsPlaying={setIsPlaying}
                         />
                 </div>
-                <div className="row">
-                    <div className="col-4">
+                <div className="row g-4 control-grid">
+                    <div className="col-12 col-lg-4 control-section">
                         <Cpm
                             procText={procText}
                             setProcText={setProcText}
@@ -192,7 +192,7 @@ return (
                             />
                         </div>
                     </div>
-                        <div className="col-4">
+                        <div className="col-12 col-lg-4 control-section">
                         <Instruments
                             procText={procText}
                             setProcText={setProcText}
@@ -203,7 +203,7 @@ return (
                             />
                     </div>
 
-                    <div className="col-4">
+                    <div className="col-12 col-lg-4 control-section">
                         <AudioEffects
                             delay={delay}
                             setDelay={setDelay}

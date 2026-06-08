@@ -44,9 +44,9 @@ const Instruments = ({ procText, setProcText, instrumentIsPlayingList, setInstru
         <>
             {instrumentList.length > 0 && (
                 instrumentList.map((instrument, index) => (
-                    <div key={index} className="form-check form-switch mb-2">
-                        <input className="form-check-input mt-4" style={{ marginLeft: "120px" }} type="checkbox" checked={instrumentIsPlayingList[index]} onChange={() => handlePlayInstrumentToggle(index)} />
-                        <label className="form-check-label fs-5 fw-bold mt-3" style={{ marginRight: "100px" }} htmlFor={instrument}>{instrument}</label>
+                    <div key={index} className="form-check form-switch instrument-toggle">
+                        <input className="form-check-input" id={`instrument-${instrument}`} type="checkbox" checked={instrumentIsPlayingList[index]} onChange={() => handlePlayInstrumentToggle(index)} />
+                        <label className="form-check-label fs-5 fw-bold" htmlFor={`instrument-${instrument}`}>{instrument}</label>
                     </div>
                 ))
             )}

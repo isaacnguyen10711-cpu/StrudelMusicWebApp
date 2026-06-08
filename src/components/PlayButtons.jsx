@@ -22,11 +22,11 @@ const PlayButtons = ({ isPlaying, setIsPlaying }) => {
         <>
             <div className="row justify-content-center">
                 <div className="col-auto">
-                    {isPlaying ? <button style={{ marginTop: "-40px" }} onClick={handleStop} id="stop" className="btn">
-                        <i className="bi bi-pause-circle-fill text-danger" style={{ fontSize: "100px" }}></i>
+                    {isPlaying ? <button onClick={handleStop} id="stop" className="btn play-toggle-button">
+                        <i className="bi bi-pause-circle-fill text-danger"></i>
                     </button>
-                        : <button style={{ marginTop: "-40px" }} onClick={handlePlay} id="play" className="btn">
-                            <i className="bi bi-play-circle-fill text-success" style={{ fontSize: "100px" }}></i>
+                        : <button onClick={handlePlay} id="play" className="btn play-toggle-button">
+                            <i className="bi bi-play-circle-fill text-success"></i>
                         </button>}
                     
                 </div>

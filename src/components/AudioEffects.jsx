@@ -136,25 +136,25 @@ const AudioEffects = ({ reverb, setReverb, delay, setDelay, procText, setProcTex
     return (
         <>
             <div className="row mb-3 text-center">
-                <p style={{ marginLeft: "-20px" }} className="fs-5 fw-bold ">AUDIO EFFECTS</p>
+                <p className="fs-5 fw-bold ">AUDIO EFFECTS</p>
             </div>
 
             <div className="row mb-4">
-                <div className="col">
+                <div className="col effect-control">
                 {/*Apply inline styling to make sure when the reverb or delay value changes, same layout is still kept*/}
-                    <button style={{ width: "40px", height: "40px" }} onClick={handleReverbIncrease} className="btn btn-outline-primary " type="button">+</button>
-                    <button style={{ width: "40px", height: "40px", marginRight: "20px" }} onClick={handleReverbDecrease} className="btn btn-outline-danger " type="button">-</button>
-                    <button style={{ width: "250px", height: "50px", marginRight: "20px" }} onClick={handleReverb} className="btn btn-outline-light " type="button">REVERB EFFECT</button> 
-                    <label style={{ width: "110px", display: "inline-block" }} className=" form-label fs-5">REVERB: {reverb} </label>
+                    <button onClick={handleReverbIncrease} className="btn btn-outline-primary effect-stepper" type="button">+</button>
+                    <button onClick={handleReverbDecrease} className="btn btn-outline-danger effect-stepper" type="button">-</button>
+                    <button onClick={handleReverb} className="btn btn-outline-light effect-button" type="button">REVERB EFFECT</button> 
+                    <label className="form-label fs-5 effect-value">REVERB: {reverb} </label>
                 </div>
             </div>
 
             <div className="row">
-                <div className="col">
-                    <button style={{ width: "40px", height: "40px" }} onClick={handleDelayIncrease} className="btn btn-outline-primary " type="button">+</button>
-                    <button style={{ width: "40px", height: "40px", marginRight: "20px" }} onClick={handleDelayDecrease} className="btn btn-outline-danger " type="button">-</button>
-                    <button style={{ width: "250px", height: "50px", marginRight: "30px" }} onClick={handleDelay} className="btn btn-outline-light " type="button">DELAY EFFECT</button>
-                    <label style={{ width: "100px", display: "inline-block" }} className=" form-label fs-5">DELAY: {delay} </label>
+                <div className="col effect-control">
+                    <button onClick={handleDelayIncrease} className="btn btn-outline-primary effect-stepper" type="button">+</button>
+                    <button onClick={handleDelayDecrease} className="btn btn-outline-danger effect-stepper" type="button">-</button>
+                    <button onClick={handleDelay} className="btn btn-outline-light effect-button" type="button">DELAY EFFECT</button>
+                    <label className="form-label fs-5 effect-value">DELAY: {delay} </label>
                 </div>
             </div>
 
