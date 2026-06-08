@@ -1,10 +1,17 @@
 import { globalEditor } from "../App";
+import { useEffect, useState } from "react";
 
 
-const VolumeControls = ({ volume, setVolume, procText, setProcText, isPlaying }) => {
+const VolumeControls = ({ procText, setProcText, isPlaying }) => {
 
+    const [volume, setVolume] = useState(20)
     const volumeRegex = /^all\(x => x\.velocity\([^)]*\)\)\s*$/gm;
     const oldPostgainVolumeRegex = /^all\(x => x\.postgain\([^)]*\)\)\s*$/gm;
+
+    useEffect(() => {
+        const volumeMatch = procText.match(/all\(x => x\.velocity\(([^)]*)\)\)/);
+        setVolume(volumeMatch ? Number(volumeMatch[1]) * 20 : 20);
+    }, [procText]);
 
     const updateEditor = (newText) => {
         setProcText(newText)
@@ -38,7 +45,7 @@ const VolumeControls = ({ volume, setVolume, procText, setProcText, isPlaying })
     // Reset volume to the beginning
     const resetVolume = () => {
         const newText = procText.replace(volumeRegex, '').replace(oldPostgainVolumeRegex, '').trimEnd()
-        setVolume(10)
+        setVolume(20)
         updateEditor(newText)
     }
 

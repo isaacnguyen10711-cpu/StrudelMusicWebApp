@@ -1,10 +1,10 @@
 import { globalEditor } from "./App.js";
 
-const LoadAndSaveSettings = ({ procText, setProcText, cpm, setCpm, instrumentList, setInstrumentList,
-    instrumentIsPlayingList, setInstrumentIsPlayingList, volume, setVolume, reverb, setReverb, delay, setDelay }) => {
+const LoadAndSaveSettings = ({ procText, setProcText, instrumentList, setInstrumentList,
+    instrumentIsPlayingList, setInstrumentIsPlayingList }) => {
 
     const SaveCurrentSettings = () => {
-        const settings = { procText, cpm, instrumentList, instrumentIsPlayingList, volume, reverb, delay }
+        const settings = { procText, instrumentList, instrumentIsPlayingList }
         // Use localStorage.setItem to save the JSON file into the local storage of the browser with the name "StrudelMusicAppSettings"
         localStorage.setItem("StrudelMusicAppSettings", JSON.stringify(settings))
         alert("Current audio settings successfully saved as 'StrudelMusicAppSettings'")
@@ -27,23 +27,11 @@ const LoadAndSaveSettings = ({ procText, setProcText, cpm, setCpm, instrumentLis
             setProcText(settings.procText)
             globalEditor.setCode(settings.procText)
         }
-        if (settings.cpm != null) {
-            setCpm(settings.cpm)
-        }
         if (settings.instrumentList != null) {
             setInstrumentList(settings.instrumentList)
         }
         if (settings.instrumentIsPlayingList != null) {
             setInstrumentIsPlayingList(settings.instrumentIsPlayingList)
-        }
-        if (settings.volume != null) {
-            setVolume(settings.volume)
-        }
-        if (settings.reverb != null) {
-            setReverb(settings.reverb)
-        }
-        if (settings.delay != null) {
-            setDelay(settings.delay)
         }
         alert("'StrudelMusicAppSettings' successfully loaded")
         

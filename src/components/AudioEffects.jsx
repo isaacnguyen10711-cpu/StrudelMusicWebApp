@@ -1,7 +1,18 @@
 import { globalEditor } from "../App";
+import { useEffect, useState } from "react";
 
 
-const AudioEffects = ({ reverb, setReverb, delay, setDelay, procText, setProcText, isPlaying }) => {
+const AudioEffects = ({ procText, setProcText, isPlaying }) => {
+
+    const [reverb, setReverb] = useState(0)
+    const [delay, setDelay] = useState(0)
+
+    useEffect(() => {
+        const reverbMatch = procText.match(/all\(x => x\.room\(([^)]*)\)\)/);
+        const delayMatch = procText.match(/all\(x => x\.delay\(([^)]*)\)\)/);
+        setReverb(reverbMatch ? Number(reverbMatch[1]) : 0);
+        setDelay(delayMatch ? Number(delayMatch[1]) : 0);
+    }, [procText]);
 
     const applyReverb = (reverbValue) => {
         var reverbMaster = `all(x => x.room(${reverbValue}))`;

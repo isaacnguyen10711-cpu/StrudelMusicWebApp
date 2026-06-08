@@ -1,4 +1,8 @@
-const TextEditor = ({ textEditorIsOpen, setTextEditorIsOpen }) => {
+import { useState } from "react";
+
+const TextEditor = () => {
+
+    const [textEditorIsOpen, setTextEditorIsOpen] = useState(false);
     const handleTextEditorToggle = () => {
         if (textEditorIsOpen) {
             setTextEditorIsOpen(false)

@@ -1,4 +1,8 @@
-const TextToProcess = ({ procText, setProcText, textAreaIsOpen, setTextAreaIsOpen }) => {
+import { useState } from "react";
+
+const TextToProcess = ({ procText, setProcText }) => {
+
+    const [textAreaIsOpen, setTextAreaIsOpen] = useState(false);
 
     const handleTextAreaToggle = () => {
         if (textAreaIsOpen) {

@@ -64,20 +64,8 @@ export default function StrudelDemo() {
     // Setting up states to react to changes when users click on buttons
     const [isPlaying, setIsPlaying] = useState(false);
 
-    //Set cpm function using state
-    const [cpm, setCpm] = useState(30);
-
-    // Set hide or open text area using states
-    const [textAreaIsOpen, setTextAreaIsOpen] = useState(false);
-    const [textEditorIsOpen, setTextEditorIsOpen] = useState(false);
-
     const [instrumentList, setInstrumentList] = useState([]);
     const [instrumentIsPlayingList, setInstrumentIsPlayingList] = useState([])
-
-    const [volume, setVolume] = useState(20)
-
-    const [reverb, setReverb] = useState(0)
-    const [delay, setDelay] = useState(0)
 
 
 const hasRun = useRef(false);
@@ -139,18 +127,10 @@ return (
             <LoadAndSaveSettings
                 procText={procText}
                 setProcText={setProcText}
-                cpm={cpm}
-                setCpm={setCpm}
                 instrumentList={instrumentList}
                 setInstrumentList={setInstrumentList}
                 instrumentIsPlayingList={instrumentIsPlayingList}
                 setInstrumentIsPlayingList={setInstrumentIsPlayingList}
-                volume={volume}
-                setVolume={setVolume}
-                reverb={reverb}
-                setReverb={setReverb}
-                delay={delay}
-                setDelay={setDelay}
             />
         </div>
         <main>
@@ -178,14 +158,10 @@ return (
                         <Cpm
                             procText={procText}
                             setProcText={setProcText}
-                            setCpm={setCpm}
-                            cpm={cpm}
                             isPlaying={isPlaying}
                         />
                         <div className="mt-4">
                             <VolumeControls
-                                volume={volume}
-                                setVolume={setVolume}
                                 procText={procText}
                                 setProcText={setProcText}
                                 isPlaying={isPlaying}
@@ -205,10 +181,6 @@ return (
 
                     <div className="col-12 col-lg-4 control-section">
                         <AudioEffects
-                            delay={delay}
-                            setDelay={setDelay}
-                            reverb={reverb}
-                            setReverb={setReverb}
                             procText={procText}
                             setProcText={setProcText}
                             isPlaying={isPlaying}
@@ -220,16 +192,11 @@ return (
                     <TextToProcess
                         procText={procText}
                         setProcText={setProcText}
-                        textAreaIsOpen={textAreaIsOpen}
-                        setTextAreaIsOpen={setTextAreaIsOpen}
                         
                     />
                 </div>
                 <div className="row">
-                    <TextEditor
-                        textEditorIsOpen={textEditorIsOpen}
-                        setTextEditorIsOpen={setTextEditorIsOpen}
-                    />
+                    <TextEditor />
                 </div>
 
             </div>
