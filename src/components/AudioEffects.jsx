@@ -135,7 +135,7 @@ const AudioEffects = ({ reverb, setReverb, delay, setDelay, procText, setProcTex
 
     return (
         <>
-            <div className="row mb-3 text-center">
+            <div className="row text-center">
                 <p className="fs-5 fw-bold ">AUDIO EFFECTS</p>
             </div>
 
