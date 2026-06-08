@@ -3,46 +3,43 @@ import { globalEditor } from "../App";
 
 const VolumeControls = ({ volume, setVolume, procText, setProcText, isPlaying }) => {
 
+    const volumeRegex = /^all\(x => x\.velocity\([^)]*\)\)\s*$/gm;
+    const oldPostgainVolumeRegex = /^all\(x => x\.postgain\([^)]*\)\)\s*$/gm;
+
+    const updateEditor = (newText) => {
+        setProcText(newText)
+        if (globalEditor) {
+            globalEditor.setCode(newText)
+            if (isPlaying) {
+                globalEditor.evaluate();
+            }
+        }
+    }
+
     const changeVolume = (newVolume) => {
-        var volumeMaster = `all(x => x.postgain(${newVolume}))`;
-        // using regex to find the postgain() command
-        const regex = /all\(x => x\.postgain\(.*\)\)/gs
-        var newText = procText
-        // set 2 conditions if found or not found the postgain() command
-        let findVolume = newText.includes("all(x => x.postgain(");
-        if (findVolume) {
-            newText = newText.replaceAll(regex, volumeMaster)
+        var volumeMaster = `all(x => x.velocity(${newVolume}))`;
+        var newText = procText.replace(oldPostgainVolumeRegex, '').trimEnd()
+
+        if (volumeRegex.test(newText)) {
+            newText = newText.replace(volumeRegex, volumeMaster)
         }
         else {
             newText = newText + "\n" + volumeMaster
         }
-        // set the text and the editor with the new text after changing volume
-        setProcText(newText)
-        globalEditor.setCode(newText)
+
+        updateEditor(newText)
     }
 
     const handleVolumeChange = (volume) => {
         setVolume(volume)
-        changeVolume(volume / 4)
-        if (isPlaying) {
-            globalEditor.evaluate();
-        }   
+        changeVolume(volume / 20)
     }
 
     // Reset volume to the beginning
     const resetVolume = () => {
-        const regex = /all\(x => x\.postgain\(.*\)\)/gs
-        var newText = procText
-        let findVolume = newText.includes("all(x => x.postgain(");
-        if (findVolume) {
-            newText = newText.replaceAll(regex, '')
-            setVolume(10)
-        }
-        setProcText(newText)
-        globalEditor.setCode(newText)
-        if (isPlaying) {
-            globalEditor.evaluate();
-        } 
+        const newText = procText.replace(volumeRegex, '').replace(oldPostgainVolumeRegex, '').trimEnd()
+        setVolume(10)
+        updateEditor(newText)
     }
 
     return (

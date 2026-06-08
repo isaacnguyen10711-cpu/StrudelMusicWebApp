@@ -74,7 +74,7 @@ export default function StrudelDemo() {
     const [instrumentList, setInstrumentList] = useState([]);
     const [instrumentIsPlayingList, setInstrumentIsPlayingList] = useState([])
 
-    const [volume, setVolume] = useState(10)
+    const [volume, setVolume] = useState(20)
 
     const [reverb, setReverb] = useState(0)
     const [delay, setDelay] = useState(0)
