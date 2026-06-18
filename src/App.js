@@ -17,7 +17,8 @@ import TextEditor from './components/TextEditor';
 import Cpm from './components/Cpm';
 import VolumeControls from './components/VolumeControls';
 import AudioEffects from './components/AudioEffects';
-import LoadAndSaveSettings from './LoadAndSaveSettings'
+import LoadAndSaveSettings from './LoadAndSaveSettings';
+import { Analytics } from '@vercel/analytics/react';
 
 
 //Test comments
@@ -203,6 +204,7 @@ return (
 
             <canvas id="roll"></canvas>
         </main>
+        <Analytics />
     </div>
 );
 
