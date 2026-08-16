@@ -121,7 +121,7 @@ useEffect(() => {
 return (
     <div className="App">
         <div className='row app-header-row'>
-            <h2 className="app-title">Strudel Music </h2>
+            <h2 className="app-title mt-4">Strudel Music </h2>
         </div>
         <div className='row settings-row'>
             <LoadAndSaveSettings
