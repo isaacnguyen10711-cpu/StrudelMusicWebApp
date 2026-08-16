@@ -7,20 +7,16 @@
       "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\university work\\projects\\strudelmusicstudio\\src\\components\\preprocessbuttons.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\preprocessbuttons.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\university work\\projects\\strudelmusicstudio\\src\\loadandsavesettings.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\loadandsavesettings.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\university work\\projects\\strudelmusicstudio\\src\\components\\audioeffects.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\audioeffects.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\university work\\projects\\strudelmusicstudio\\src\\components\\volumecontrols.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\volumecontrols.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\university work\\projects\\strudelmusicstudio\\src\\components\\instruments.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\instruments.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\university work\\projects\\strudelmusicstudio\\src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,55 +50,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
+              "Title": "VolumeControls.jsx",
+              "DocumentMoniker": "C:\\University Work\\Projects\\StrudelMusicStudio\\src\\components\\VolumeControls.jsx",
+              "RelativeDocumentMoniker": "src\\components\\VolumeControls.jsx",
+              "ToolTip": "C:\\University Work\\Projects\\StrudelMusicStudio\\src\\components\\VolumeControls.jsx",
+              "RelativeToolTip": "src\\components\\VolumeControls.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-06-08T14:17:48.525Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Instruments.jsx",
               "DocumentMoniker": "C:\\University Work\\Projects\\StrudelMusicStudio\\src\\components\\Instruments.jsx",
               "RelativeDocumentMoniker": "src\\components\\Instruments.jsx",
               "ToolTip": "C:\\University Work\\Projects\\StrudelMusicStudio\\src\\components\\Instruments.jsx",
               "RelativeToolTip": "src\\components\\Instruments.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACMAAAAAAAAAAAAAwC8AAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-03-12T15:32:33.667Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-08T12:56:07.175Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "AudioEffects.jsx",
-              "DocumentMoniker": "C:\\University Work\\Projects\\StrudelMusicStudio\\src\\components\\AudioEffects.jsx",
-              "RelativeDocumentMoniker": "src\\components\\AudioEffects.jsx",
-              "ToolTip": "C:\\University Work\\Projects\\StrudelMusicStudio\\src\\components\\AudioEffects.jsx",
-              "RelativeToolTip": "src\\components\\AudioEffects.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFoAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-03-12T15:31:48.721Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "LoadAndSaveSettings.jsx",
-              "DocumentMoniker": "C:\\University Work\\Projects\\StrudelMusicStudio\\src\\LoadAndSaveSettings.jsx",
-              "RelativeDocumentMoniker": "src\\LoadAndSaveSettings.jsx",
-              "ToolTip": "C:\\University Work\\Projects\\StrudelMusicStudio\\src\\LoadAndSaveSettings.jsx",
-              "RelativeToolTip": "src\\LoadAndSaveSettings.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-03-12T15:31:31.865Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PreprocessButtons.jsx",
-              "DocumentMoniker": "C:\\University Work\\Projects\\StrudelMusicStudio\\src\\components\\PreprocessButtons.jsx",
-              "RelativeDocumentMoniker": "src\\components\\PreprocessButtons.jsx",
-              "ToolTip": "C:\\University Work\\Projects\\StrudelMusicStudio\\src\\components\\PreprocessButtons.jsx",
-              "RelativeToolTip": "src\\components\\PreprocessButtons.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAACJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-03-12T15:27:24.508Z",
-              "EditorCaption": ""
+              "Title": "App.css",
+              "DocumentMoniker": "C:\\University Work\\Projects\\StrudelMusicStudio\\src\\App.css",
+              "RelativeDocumentMoniker": "src\\App.css",
+              "ToolTip": "C:\\University Work\\Projects\\StrudelMusicStudio\\src\\App.css",
+              "RelativeToolTip": "src\\App.css",
+              "ViewState": "AgIAAI8AAAAAAAAAAAAjwJwAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-06-08T12:49:18.743Z"
             },
             {
               "$type": "Document",
@@ -112,7 +92,7 @@
               "RelativeDocumentMoniker": "src\\App.js",
               "ToolTip": "C:\\University Work\\Projects\\StrudelMusicStudio\\src\\App.js",
               "RelativeToolTip": "src\\App.js",
-              "ViewState": "AgIAANoAAAAAAAAAAAAgwDkAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIkAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2026-03-12T15:25:59.327Z",
               "EditorCaption": ""
